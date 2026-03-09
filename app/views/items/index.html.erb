@@ -1,0 +1,36 @@
+<%# app/views/items/index.html.erb %>
+
+<h1>MY ITEMS</h1>
+
+<div class="items-grid">
+
+  <% @items.each do |item| %>
+
+    <div class="item-card">
+
+      <% if item.images.attached? %>
+        <%= image_tag item.images.first, class: "item-image" %>
+      <% end %>
+
+      <h3><%= item.name %></h3>
+
+      <p>¥<%= item.price %></p>
+
+      <span class="status <%= item.status %>">
+        <%= item.status %>
+      </span>
+
+      <div class="actions">
+        <%= link_to "詳細", item %>
+        <%= link_to "編集", edit_item_path(item) %>
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
+
+<br>
+
+<%= link_to "アイテム追加", new_item_path, class: "new-button" %>

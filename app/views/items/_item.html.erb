@@ -1,0 +1,37 @@
+<%# app/views/items/_item.html.erb %>
+<h1>商品詳細</h1>
+<div id="<%= dom_id item %>">
+  <p>
+    <strong>商品タイトル:</strong>
+    <%= item.name %>
+  </p>
+
+  <p>
+    <strong>説明:</strong>
+    <%= item.description %>
+  </p>
+
+  <p>
+    <strong>値段:</strong>
+    <%= item.price %>
+  </p>
+
+  <p>
+    <strong>ステータス:</strong>
+    <%= item.status %>
+  </p>
+
+  <p>
+    <strong>メモ:</strong>
+    <%= item.memo %>
+  </p>
+
+  <% if item.images.attached? %>
+    <h3>Images</h3>
+
+    <% item.images.each do |image| %>
+      <%= image_tag image, width: 200 %>
+    <% end %>
+  <% end %>
+
+</div>
