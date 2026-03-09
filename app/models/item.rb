@@ -4,5 +4,15 @@ class Item < ApplicationRecord
 
   has_many_attached :images
 
-  enum status: { 未出品: 0, 出品中: 1, 売却済み: 2 }
+  enum status: {
+    未整理: 0,
+    出品候補: 1,
+    出品中: 2,
+    売却済み: 3,
+    保留: 4,
+    手放さない: 5
+  }
+
+  validates :name, presence: true
+  validates :status, presence: true
 end

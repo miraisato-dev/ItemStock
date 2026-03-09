@@ -1,0 +1,33 @@
+<%# app/views/devise/sessions/new.html.erb %>
+<h2>ログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="field">
+    <p><%= f.label :email, "メールアドレス" %></p>
+    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password, "パスワード" %></p>
+    <p><%= f.password_field :password, autocomplete: "current-password" %></p>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <p><%= f.check_box :remember_me %></p>
+      <p><%= f.label :remember_me, "ログイン状態を保存する" %></p>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+<br>
+
+<%= button_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
