@@ -1,24 +1,34 @@
-# README
+「ItemStock」
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+フリマ出品前に持ち物を整理するためのRailsアプリ
 
-Things you may want to cover:
+1. 機能
+・ユーザー登録 / ログイン
+・ゲストログイン
+・持ち物CRUD
+・画像アップロード
+・出品ステータス管理
+・カテゴリ検索
+・ステータス検索
 
-* Ruby version
+2. 使用技術
 
-* System dependencies
+Rails 7
+Ruby
+Devise
+ActiveStorage
+SQLite
 
-* Configuration
+3. ER図
 
-* Database creation
+4. 画面
 
-* Database initialization
+ログイン
+一覧
+詳細
+登録
 
-* How to run the test suite
+5. 今後の機能
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+・価格履歴
+・AI価格提案
