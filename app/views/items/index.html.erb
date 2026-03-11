@@ -2,6 +2,20 @@
 
 <h1>MY ITEMS</h1>
 
+<%= form_with url: items_path, method: :get, local: true, class: "search-box" do |f| %>
+
+  <%= f.text_field :keyword, placeholder: "商品名検索" %>
+
+  <%= f.select :status, Item.statuses.keys, include_blank: "ステータス" %>
+
+  <%= f.select :category,
+        ["CD","服","家電","本","ゲーム","ガジェット"],
+        include_blank: "カテゴリ" %>
+
+  <%= f.submit "検索" %>
+
+<% end %>
+
 <div class="items-grid">
 
   <% @items.each do |item| %>

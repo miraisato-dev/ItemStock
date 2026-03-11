@@ -4,9 +4,31 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[ show edit update destroy ]
 
+  def dashboard
+    @items = current_user.items
+
+    @total = @items.count
+    @selling = @items.出品中.count
+    @sold = @items.売却済み.count
+    @candidate = @items.出品候補.count
+    @revenue = @items.売却済み.sum(:price)
+  end
+
   def index
     # 今ログインしているユーザーのアイテムだけ取得
     @items = current_user.items
+
+    if params[:status].present?
+      @items = @items.where(status: params[:status])
+    end
+
+    if params[:keyword].present?
+      @items = @items.where("name LIKE ?", "%#{params[:keyword]}%")
+    end
+
+    if params[:category].present?
+      @items = @items.where(category: params[:category])
+    end
   end
 
   def show

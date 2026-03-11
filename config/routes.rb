@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :items
   root "items#index"
 
+  get "dashboard", to: "items#dashboard"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

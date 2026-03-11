@@ -1,0 +1,10 @@
+<%# app/views/items/dashboard.html.erb %>
+<h1>ダッシュボード</h1>
+
+<p>持ち物総数: <%= @total %></p>
+<p>出品中: <%= @selling %></p>
+<p>売却済: <%= @sold %></p>
+<p>出品候補: <%= @candidate %></p>
+<p>売上合計: ¥<%= @revenue %></p>
+
+<%= link_to "アイテム一覧", items_path %>

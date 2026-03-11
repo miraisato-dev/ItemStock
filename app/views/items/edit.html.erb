@@ -1,12 +1,12 @@
 <% content_for :title, "Editing item" %>
 
-<h1>Editing item</h1>
+<h1>商品編集</h1>
 
 <%= render "form", item: @item %>
 
 <br>
 
 <div>
-  <%= link_to "Show this item", @item %> |
-  <%= link_to "Back to items", items_path %>
+  <%= link_to "商品詳細", @item %> |
+  <%= link_to "アイテム一覧に戻る", items_path %>
 </div>

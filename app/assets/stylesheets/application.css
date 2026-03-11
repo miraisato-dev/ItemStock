@@ -1,6 +1,33 @@
+/* app/assets/stylesheets/application.css */
 @charset "UTF-8";
 
-CSS .status {
+/* CSSカスタムプロパティ */
+:root {
+    --primary-color: #ff5a5f;
+    --secondary-color: #007bff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --gray-color: #6c757d;
+    --light-gray-color: #f8f9fa;
+    --border-radius: 5px;
+    --padding: 10px;
+    --gap: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Josefin Sans", Verdana, sans-serif;
+    background-color: var(--light-gray-color);
+    margin: 0;
+    padding: var(--padding);
+}
+
+/* app/assets/stylesheets/application.css */
+.status {
+    display: inline-block;
     padding: 4px 8px;
     border-radius: 5px;
 }
@@ -19,6 +46,8 @@ CSS .status {
     background: green;
     color: white;
 }
+
+/* app/views/items/index.html.erb アイテムグリッド  */
 
 .items-grid {
     display: grid;
@@ -49,4 +78,20 @@ CSS .status {
     color: white;
     border-radius: 5px;
     text-decoration: none;
+}
+
+/* app/views/items/index.html.erb 検索ボックス */
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input,
+.search-box select {
+    padding: 6px;
+    margin-right: 10px;
+}
+
+.search-box input[type="submit"] {
+    padding: 6px 12px;
 }
