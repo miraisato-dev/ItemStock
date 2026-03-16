@@ -1,7 +1,6 @@
 # app/controllers/items_controller.rb
 class ItemsController < ApplicationController
-  before_action :authenticate_user!  # ログイン必須
-
+  before_action :authenticate_user!
   before_action :set_item, only: %i[ show edit update destroy ]
 
   def dashboard
@@ -15,7 +14,6 @@ class ItemsController < ApplicationController
   end
 
   def index
-    # 今ログインしているユーザーのアイテムだけ取得
     @items = current_user.items
 
     if params[:status].present?
@@ -31,21 +29,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @item = current_user.items.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @item = current_user.items.build(item_params)
 
     if @item.save
-      redirect_to @item, notice: "Item was successfully created."
+      redirect_to @item, notice: "アイテムは正常に作成されました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,7 +49,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: "Item was successfully updated."
+      redirect_to @item, notice: "アイテムは正常に更新されました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -61,7 +57,24 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_url, notice: "Item was successfully destroyed."
+    redirect_to items_url, notice: "アイテムは正常に削除されました"
+  end
+
+  # ===== ステータス別一覧 =====
+
+  def before_listing
+    @items = current_user.items.出品候補
+    render :index
+  end
+
+  def listed
+    @items = current_user.items.出品中
+    render :index
+  end
+
+  def sold
+    @items = current_user.items.売却済み
+    render :index
   end
 
   private

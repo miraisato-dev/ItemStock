@@ -1,23 +1,50 @@
+<%# app/views/layouts/application.html.erb %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Mercari Helper" %></title>
+    <title><%= content_for(:title) || "ItemStock" %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <!-- ヘッダー -->
+    <header class="header">
+      <nav class="nav">
+
+        <div class="nav-left">
+          <%= link_to "ItemStock", dashboard_path, class: "logo" %>
+        </div>
+
+        <div class="nav-right">
+          <% if current_user %>
+            <%= link_to "アイテム登録", new_item_path %>
+            <%= link_to "出品前", before_listing_items_path %>
+            <%= link_to "出品中", listed_items_path %>
+            <%= link_to "売却済み", sold_items_path %>
+            <%= button_to "ログアウト", destroy_user_session_path, method: :delete, form: { class: "logout-form" }, class: "nav-link" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path %>
+          <% end %>
+        </div>
+
+      </nav>
+    </header>
+
+    <!-- メイン -->
+    <main class="container">
+      <%= yield %>
+    </main>
+
   </body>
 </html>

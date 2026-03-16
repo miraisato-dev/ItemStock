@@ -1,6 +1,5 @@
 <%# app/views/items/index.html.erb %>
-
-<h1>MY ITEMS</h1>
+<h1>持ち物一覧</h1>
 
 <%= form_with url: items_path, method: :get, local: true, class: "search-box" do |f| %>
 
@@ -8,41 +7,59 @@
 
   <%= f.select :status, Item.statuses.keys, include_blank: "ステータス" %>
 
-  <%= f.select :category,
-        ["CD","服","家電","本","ゲーム","ガジェット"],
-        include_blank: "カテゴリ" %>
+  <%= f.select :category, Item.categories.keys, include_blank: "カテゴリ" %>
 
   <%= f.submit "検索" %>
 
 <% end %>
 
-<div class="items-grid">
+<div class="table-wrapper">
+  <table class="items-table">
 
+<thead>
+  <tr>
+    <th>画像</th>
+    <th>商品名</th>
+    <th>カテゴリー</th>
+    <th>値段</th>
+    <th>ステータス</th>
+    <th>出品日</th>
+    <th>操作</th>
+  </tr>
+</thead>
+
+<tbody>
   <% @items.each do |item| %>
+    <tr>
 
-    <div class="item-card">
+      <td class="item-image">
+        <% if item.images.attached? %>
+          <%= image_tag item.images.first, width: 60 %>
+        <% else %>
+          画像なし
+        <% end %>
+      </td>
 
-      <% if item.images.attached? %>
-        <%= image_tag item.images.first, class: "item-image" %>
-      <% end %>
+      <td class="item-name">
+        <%= link_to item.name, item_path(item), class: "link-text" %>
+      </td>
 
-      <h3><%= item.name %></h3>
+      <td class="item-category">
+        <%= item.category %>
+      </td>
 
-      <p>¥<%= item.price %></p>
+      <td class="price">
+        <%= number_to_currency(item.price, unit: "¥", precision: 0) %>
+      </td>
 
-      <span class="status <%= item.status %>">
-        <%= item.status %>
-      </span>
-
-      <div class="actions">
-        <%= link_to "詳細", item %>
-        <%= link_to "編集", edit_item_path(item) %>
-      </div>
-
-    </div>
-
+    </tr>
   <% end %>
+</tbody>
 
+  </table>
+</div>
+
+</table>
 </div>
 
 <br>

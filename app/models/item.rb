@@ -13,6 +13,15 @@ class Item < ApplicationRecord
     手放さない: 5
   }
 
+  enum category: {
+    cd: 0,
+    clothes: 1,
+    electronics: 2,
+    book: 3,
+    game: 4,
+    gadget: 5
+  }
+
   validates :name, presence: true
   validates :status, presence: true
 end
