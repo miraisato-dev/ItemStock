@@ -4,13 +4,12 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
 
   def dashboard
-    @items = current_user.items
+    @total_items     = current_user.items.count
+    @selling_items   = current_user.items.出品中.count
+    @sold_items      = current_user.items.売却済み.count
+    @candidate_items = current_user.items.出品候補.count
 
-    @total = @items.count
-    @selling = @items.出品中.count
-    @sold = @items.売却済み.count
-    @candidate = @items.出品候補.count
-    @revenue = @items.売却済み.sum(:price)
+    @total_sales     = current_user.items.売却済み.sum(:price)
   end
 
   def index
@@ -32,10 +31,13 @@ class ItemsController < ApplicationController
   def show; end
 
   def new
-    @item = current_user.items.build
+    @item = current_user.items.new
+    @item.status = "出品候補"  # ← これ追加
   end
 
-  def edit; end
+  def edit
+    @item = current_user.items.find(params[:id])
+  end
 
   def create
     @item = current_user.items.build(item_params)
@@ -57,7 +59,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_url, notice: "アイテムは正常に削除されました"
+    redirect_to items_url, status: :see_other
   end
 
   # ===== ステータス別一覧 =====

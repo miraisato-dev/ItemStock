@@ -1,3 +1,4 @@
+<%# app/views/items/_item.html.erb %>
 <div class="item-detail">
   <div class="item-detail-container">
 
@@ -21,10 +22,12 @@
       <p><strong>メモ:</strong> <%= item.memo %></p>
 
       <div class="item-actions">
-        <button class="btn-edit">編集</button>
-        <button class="btn-delete">削除</button>
+        <%= link_to "編集", edit_item_path(item), class: "btn-edit" %>
+        <%= button_to "削除", item,
+          method: :delete,
+          class: "btn-delete",
+          onclick: "return confirm('本当に削除しますか？')" %>
       </div>
     </div>
-
   </div>
 </div>

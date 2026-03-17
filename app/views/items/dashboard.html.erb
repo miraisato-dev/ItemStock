@@ -1,31 +1,41 @@
-<%# app/views/items/dashboard.html.erb %>
+<%# app/views/dashboard/dashboard.html.erb %>
 <div class="dashboard">
     <h1 class="dashboard-title">ダッシュボード</h1>
-    <div class="dashboard-grid">
-    <div class="dashboard-card card-total">
-        <p>持ち物総数</p>
-        <h2></h2>
-    </div>
 
-    <div class="dashboard-card card-selling">
-        <p>出品中</p>
-        <h2></h2>
-    </div>
+        <div class="dashboard-grid">
 
-    <div class="dashboard-card card-sold">
-        <p>売却済</p>
-        <h2></h2>
-    </div>
+            <%= link_to items_path do %>
+                <div class="dashboard-card card-total">
+                    <p>持ち物総数</p>
+                    <h2><%= @total_items %></h2>
+                </div>
+            <% end %>
 
-    <div class="dashboard-card card-candidate">
-        <p>出品候補</p>
-        <h2></h2>
-    </div>
+            <%= link_to listed_items_path do %>
+                <div class="dashboard-card card-selling">
+                    <p>出品中</p>
+                    <h2><%= @selling_items %></h2>
+                </div>
+            <% end %>
 
-    </div>
+            <%= link_to sold_items_path do %>
+                <div class="dashboard-card card-sold">
+                    <p>売却済</p>
+                    <h2><%= @sold_items %></h2>
+                </div>
+            <% end %>
+
+            <%= link_to before_listing_items_path do %>
+                <div class="dashboard-card card-candidate">
+                    <p>出品候補</p>
+                    <h2><%= @candidate_items %></h2>
+                </div>
+            <% end %>
+
+        </div>
 
     <div class="dashboard-footer">
-        <p>売上合計: ¥</p>
+        <p>売上合計: ¥<%= number_with_delimiter(@total_sales) %></p>
         <a href="/items" class="btn-dashboard">アイテム一覧へ</a>
     </div>
 </div>

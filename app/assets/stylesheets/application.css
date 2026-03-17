@@ -58,7 +58,7 @@ ROOT VARIABLES
 }
 
 /* ==================================================
-BODY
+BODY app/views/layouts/application.html.erb
 ================================================== */
 
 body {
@@ -68,8 +68,13 @@ body {
     line-height: 1.6;
 }
 
+.form_label--required::after {
+    content: " *";
+    color: var(--color-red);
+}
+
 /* ==================================================
-LAYOUT
+LAYOUT app/views/layouts/application.html.erb
 ================================================== */
 
 .container {
@@ -79,7 +84,7 @@ LAYOUT
 }
 
 /* ==================================================
-HEADER
+HEADER app/views/layouts/application.html.erb
 ================================================== */
 
 .header {
@@ -113,7 +118,7 @@ HEADER
 }
 
 /* ==================================================
-DASHBOARD
+DASHBOARD app/views/items/dashboard.html.erb
 ================================================== */
 
 .dashboard-title {
@@ -129,6 +134,11 @@ DASHBOARD
     margin: 30px 0;
 }
 
+.dashboard-grid a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .dashboard-card {
     padding: 22px;
     border-radius: 12px;
@@ -140,6 +150,7 @@ DASHBOARD
 
 .dashboard-card:hover {
     transform: translateY(-4px);
+    opacity: 0.95;
 }
 
 .dashboard-card h2 {
@@ -183,7 +194,7 @@ DASHBOARD
 }
 
 /* ==================================================
-TABLE
+TABLE app/views/items/index.html.erb
 ================================================== */
 
 table {
@@ -215,7 +226,7 @@ tbody tr:hover {
 }
 
 /* ==================================================
-STATUS LABEL
+STATUS LABEL app/views/items/_item.html.erb
 ================================================== */
 
 .status {
@@ -251,7 +262,7 @@ STATUS LABEL
 }
 
 /* ==================================================
-BUTTONS
+BUTTONS app/views/items/_item.html.erb
 ================================================== */
 
 button,
@@ -284,7 +295,7 @@ button,
 }
 
 /* ==================================================
-FORM
+FORM app/views/devise/sessions/new.html.erb
 ================================================== */
 
 form {
@@ -321,7 +332,7 @@ select:focus {
 }
 
 /* ==================================================
-SEARCH BOX
+SEARCH BOX　app/views/items/index.html.erb
 ================================================== */
 
 .search-box {
@@ -431,18 +442,140 @@ SEARCH BOX
     gap: 10px;
 }
 
-.btn-edit {
-    background: #2f80ed;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
+/* button_to対策 */
+.item-actions form {
+    display: inline;
 }
 
-.btn-delete {
-    background: #eb5757;
-    color: white;
+/* 共通ボタン（ここが本体） */
+.item-actions a,
+.item-actions button {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
     border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+}
+
+/* 編集 */
+.btn-edit {
+    background: #4CAF50;
+}
+
+/* 削除 */
+.btn-delete {
+    background: #f44336;
+}
+
+/* ホバー */
+.item-actions a:hover,
+.item-actions button:hover {
+    opacity: 0.8;
+}
+
+
+.item-actions a:hover,
+.item-actions button:hover {
+    opacity: 0.8;
+}
+
+/* =================================
+Remember Me（ログイン画面）
+================================= */
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+h2 .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.actions input {
+    width: 100%;
+    background: var(--color-blue);
+    color: white;
+    font-weight: 600;
+}
+
+
+.form-actions {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-actions form {
+    margin: 0;
+}
+
+/* 共通ボタン */
+.form-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* メイン（登録） */
+.form-btn--primary {
+    background: var(--color-blue);
+    color: white;
+}
+
+.form-btn--primary:hover {
+    background: var(--color-blue-dark);
+}
+
+/* サブ（ログイン） */
+.form-btn--secondary {
+    background: white;
+    color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+}
+
+.form-btn--secondary:hover {
+    background: var(--color-gray-100);
+}
+
+
+/* =================================
+Input Group (価格入力の¥マークなど) app/views/items/_form.html.erb
+================================= */
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-prepend {
+    padding: 0 0.5em;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    line-height: 2em;
+}
+
+.input-group input[type="number"] {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    flex: 1;
 }
