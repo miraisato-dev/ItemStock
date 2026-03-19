@@ -26,7 +26,7 @@ class Item < ApplicationRecord
   validates :status, presence: true
   validates :category, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :images, length: { maximum: 5 }
+  validates :images, length: { maximum: 10 }
 
   def available_statuses
     case status

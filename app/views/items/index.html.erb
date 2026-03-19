@@ -66,8 +66,13 @@
           </td>
 
           <td class="actions">
-            <%= link_to "編集", edit_item_path(item) %>
-            <%= link_to "削除", item_path(item), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <%= link_to "編集", edit_item_path(item), class: "btn-action btn-edit" %>
+
+            <%= button_to "削除", item,
+              method: :delete,
+              form: { class: "btn-action-form" },
+              class: "btn-action btn-delete",
+              onclick: "return confirm('本当に削除しますか？')" %>
           </td>
         </tr>
       <% end %>

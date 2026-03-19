@@ -22,11 +22,13 @@
       <p><strong>メモ:</strong> <%= item.memo %></p>
 
       <div class="item-actions">
-        <%= link_to "編集", edit_item_path(item), class: "btn-edit" %>
+        <%= link_to "編集", edit_item_path(item), class: "btn-action btn-edit" %>
+
         <%= button_to "削除", item,
-          method: :delete,
-          class: "btn-delete",
-          onclick: "return confirm('本当に削除しますか？')" %>
+              method: :delete,
+              form: { class: "btn-action-form" },
+              class: "btn-action btn-delete",
+              onclick: "return confirm('本当に削除しますか？')" %>
       </div>
     </div>
   </div>

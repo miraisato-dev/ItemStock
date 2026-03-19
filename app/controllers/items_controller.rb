@@ -3,45 +3,33 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: %i[ show edit update destroy ]
 
+  # ===== ダッシュボード =====
   def dashboard
     @total_items     = current_user.items.count
     @selling_items   = current_user.items.出品中.count
     @sold_items      = current_user.items.売却済み.count
     @candidate_items = current_user.items.出品候補.count
-
     @total_sales     = current_user.items.売却済み.sum(:price)
   end
 
+  # ===== 一覧 =====
   def index
     @items = current_user.items
-
-    if params[:status].present?
-      @items = @items.where(status: params[:status])
-    end
-
-    if params[:keyword].present?
-      @items = @items.where("name LIKE ?", "%#{params[:keyword]}%")
-    end
-
-    if params[:category].present?
-      @items = @items.where(category: params[:category])
-    end
+    @items = @items.where(status: params[:status]) if params[:status].present?
+    @items = @items.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
+    @items = @items.where(category: params[:category]) if params[:category].present?
   end
 
   def show; end
 
   def new
-    @item = current_user.items.new
-    @item.status = "出品候補"  # ← これ追加
+    @item = current_user.items.new(status: "出品候補")
   end
 
-  def edit
-    @item = current_user.items.find(params[:id])
-  end
+  def edit; end
 
   def create
     @item = current_user.items.build(item_params)
-
     if @item.save
       redirect_to @item, notice: "アイテムは正常に作成されました"
     else
@@ -50,10 +38,26 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to @item, notice: "アイテムは正常に更新されました"
+    @item = current_user.items.find(params[:id])
+
+    # 削除指定の既存画像を消す
+    if params[:remove_image_ids].present?
+      params[:remove_image_ids].each do |id|
+        @item.images.find(id).purge
+      end
+    end
+
+    # 既存画像を残したまま、新規追加画像を attach
+    if @item.update(item_params.except(:images))
+      if params[:item][:images].present?
+        params[:item][:images].each do |img|
+          @item.images.attach(img)
+        end
+      end
+
+      redirect_to @item, notice: "更新しました"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
@@ -63,7 +67,6 @@ class ItemsController < ApplicationController
   end
 
   # ===== ステータス別一覧 =====
-
   def before_listing
     @items = current_user.items.出品候補
     render :index
@@ -86,6 +89,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :status, :memo, images: [])
+    params.require(:item).permit(
+      :name, :category, :price, :status, :description, :memo, :user_id,
+      images: [],           # 新規追加画像
+      # existing_image_ids: [] # 既存画像を残すため
+    )
   end
 end
