@@ -6,10 +6,10 @@ class ItemsController < ApplicationController
   # ===== ダッシュボード =====
   def dashboard
     @total_items     = current_user.items.count
-    @selling_items   = current_user.items.出品中.count
-    @sold_items      = current_user.items.売却済み.count
-    @candidate_items = current_user.items.出品候補.count
-    @total_sales     = current_user.items.売却済み.sum(:price)
+    @selling_items   = current_user.items.listed.count
+    @sold_items      = current_user.items.sold.count
+    @candidate_items = current_user.items.draft.count
+    @total_sales     = current_user.items.sold.sum(:price)
   end
 
   # ===== 一覧 =====
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   def show; end
 
   def new
-    @item = current_user.items.new(status: "出品候補")
+    @item = current_user.items.new(status: "draft")
   end
 
   def edit; end
@@ -68,17 +68,17 @@ class ItemsController < ApplicationController
 
   # ===== ステータス別一覧 =====
   def before_listing
-    @items = current_user.items.出品候補
+    @items = current_user.items.draft
     render :index
   end
 
   def listed
-    @items = current_user.items.出品中
+    @items = current_user.items.listed
     render :index
   end
 
   def sold
-    @items = current_user.items.売却済み
+    @items = current_user.items.sold
     render :index
   end
 

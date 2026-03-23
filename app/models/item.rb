@@ -5,12 +5,10 @@ class Item < ApplicationRecord
   has_many_attached :images
 
   enum status: {
-    未整理: 0,
-    出品候補: 1,
-    出品中: 2,
-    売却済み: 3,
-    保留: 4,
-    手放さない: 5
+    draft: 0,        # 未整理
+    listed: 1,       # 出品中
+    sold: 2,         # 売却済み
+    keep: 3          # 手放さない
   }
 
   enum category: {
@@ -29,29 +27,39 @@ class Item < ApplicationRecord
   validates :images, length: { maximum: 10 }
 
   def available_statuses
-    case status
-    when "出品候補"
-      ["出品候補", "出品中"]
+    case status.to_sym
+    when :draft
+      %i[draft listed]
 
-    when "出品中"
-      ["出品中", "売却済み"]
+    when :listed
+      %i[listed sold]
 
-    when "売却済み"
-      ["売却済み"]
+    when :sold
+      %i[sold]
 
     else
-      ["出品候補"]
+      %i[draft]
     end
   end
 
-  def self.category_options
-    {
-      cd: "CD",
-      clothes: "服",
-      electronics: "家電",
-      book: "本",
-      game: "ゲーム",
-      gadget: "ガジェット"
-    }
+  def enum_i18n(name)
+    value = public_send(name)
+    return nil if value.blank?
+
+    I18n.t("enums.item.#{name}.#{value}", default: value)
+  end
+
+  def category_i18n
+    enum_i18n(:category)
+  end
+
+  def status_i18n
+    enum_i18n(:status)
+  end
+
+  def self.enum_select_options(name)
+    public_send(name.to_s.pluralize).keys.map do |k|
+      [I18n.t("enums.item.#{name}.#{k}"), k]
+    end
   end
 end

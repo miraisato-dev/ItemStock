@@ -5,11 +5,13 @@
 
   <%= f.text_field :keyword, placeholder: "商品名検索" %>
 
-  <%= f.select :status, Item.statuses.keys, include_blank: "ステータス" %>
+  <%= f.select :status,
+  Item.statuses.keys.map { |k| [I18n.t("enums.item.status.#{k}"), k] },
+  { include_blank: "ステータス" } %>
 
   <%= f.select :category,
-  Item.category_options.map { |k, v| [v, k] },
-  include_blank: "カテゴリ" %>
+  Item.categories.keys.map { |k| [I18n.t("enums.item.category.#{k}"), k] },
+  { include_blank: "カテゴリ" } %>
 
   <%= f.select :sort, [["新しい順", "new"], ["古い順", "old"]], include_blank: "並び替え" %>
 
@@ -49,18 +51,19 @@
           </td>
 
           <td class="item-category">
-            <%= Item.category_options[item.category.to_sym] if item.category.present? %>
-            <%= "未設定" unless item.category.present? %>
-          </td>
+          <%= item.category_i18n || "未設定" %>
+        </td>
 
           <td class="price">
             <%= number_to_currency(item.price, unit: "¥", precision: 0) %>
           </td>
 
-          <td class="status">
-            <%= item.status %>
+          <td>
+            <span class="status status-<%= item.status %>">
+              <%= item.status_i18n %>
+            </span>
           </td>
-
+          
           <td class="created-at">
             <%= item.created_at.strftime("%Y-%m-%d") %>
           </td>
@@ -80,10 +83,3 @@
 
   </table>
 </div>
-
-</table>
-</div>
-
-<br>
-
-<%= link_to "アイテム追加", new_item_path, class: "new-button" %>

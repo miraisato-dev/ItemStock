@@ -8,8 +8,8 @@
 <div>
     <%= form.label :category, "カテゴリー", style: "display: block" %>
     <%= form.select :category,
-    Item.category_options.map { |k, v| [v, k] },
-    { selected: item.category }, placeholder: "カテゴリーを選択" %>
+        Item.categories.keys.map { |k| [I18n.t("enums.item.category.#{k}"), k] },
+        { include_blank: "カテゴリーを選択" } %>
 </div>
 
 <div>
@@ -20,9 +20,8 @@
 <div>
     <%= form.label :status, "ステータス", style: "display: block" %>
     <%= form.select :status,
-        Item.statuses.keys.map { |s| [s, s] },
-        { include_blank: "ステータスを選択" },
-        { class: "form-control" } %>
+        Item.enum_select_options(:status),
+        { include_blank: "ステータスを選択" } %>
 </div>
 
 <div>
@@ -35,5 +34,5 @@
     <%= form.text_area :memo, placeholder: "メモを入力してください" %>
 </div>
 
-
+<%# ユーザーIDを隠しフィールドで送信 %>
 <%= form.hidden_field :user_id, value: current_user.id %>

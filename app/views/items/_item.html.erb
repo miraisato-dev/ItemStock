@@ -1,4 +1,5 @@
 <%# app/views/items/_item.html.erb %>
+<h1>商品詳細ページ: <%= item.name %></h1>
 <div class="item-detail">
   <div class="item-detail-container">
 
@@ -13,12 +14,13 @@
     </div>
 
     <div class="item-info">
-      <p><strong>商品タイトル:</strong> <%= item.name %></p>
-      <p><strong>説明:</strong> <%= item.description %></p>
+      <p><strong>商品名:</strong> <%= item.name %></p>
+      <p><strong>カテゴリー:</strong> <%= item.category_i18n || "未設定" %></p>
       <p><strong>値段:</strong> ¥<%= item.price %></p>
       <p><strong>ステータス:</strong>
-        <span class="status-badge"><%= item.status %></span>
+        <span class="status-badge"><%= item.status_i18n %></span>
       </p>
+      <p><strong>商品説明:</strong> <%= item.description %></p>
       <p><strong>メモ:</strong> <%= item.memo %></p>
 
       <div class="item-actions">

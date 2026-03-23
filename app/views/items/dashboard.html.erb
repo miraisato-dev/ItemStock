@@ -11,6 +11,13 @@
                 </div>
             <% end %>
 
+            <%= link_to before_listing_items_path do %>
+                <div class="dashboard-card card-candidate">
+                    <p>出品前</p>
+                    <h2><%= @candidate_items %></h2>
+                </div>
+            <% end %>
+
             <%= link_to listed_items_path do %>
                 <div class="dashboard-card card-selling">
                     <p>出品中</p>
@@ -20,15 +27,8 @@
 
             <%= link_to sold_items_path do %>
                 <div class="dashboard-card card-sold">
-                    <p>売却済</p>
+                    <p>売却済み</p>
                     <h2><%= @sold_items %></h2>
-                </div>
-            <% end %>
-
-            <%= link_to before_listing_items_path do %>
-                <div class="dashboard-card card-candidate">
-                    <p>出品候補</p>
-                    <h2><%= @candidate_items %></h2>
                 </div>
             <% end %>
 
