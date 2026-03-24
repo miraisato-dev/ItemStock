@@ -33,7 +33,7 @@ ROOT VARIABLES
     --color-gray-900: #111827;
 
     /* Brand colors */
-    --color-blue: #0071c1;
+    --color-blue: #3b82f6;
     --color-blue-light: #60a5fa;
     --color-blue-dark: #1e40af;
     --color-blue-navy: #1c1d3b;
@@ -172,7 +172,7 @@ Component Size Tokens
 
     /* Header & Footer height */
     --header-height: 80px;
-    --footer-height: 240px;
+    --footer-height: 120px;
     --logo-height-header: 32px;
     --logo-height-footer: 40px;
 
@@ -216,6 +216,36 @@ Component Size Tokens
 }
 
 
+/* ==================================================
+    共通 + app/views/layouts/application.html.erb
+================================================== */
+
+body {
+    font-family: var(--font-main);
+    background: var(--color-gray-50);
+    color: var(--color-gray-800);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.form_label--required::after {
+    content: " *";
+    color: var(--color-red);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: var(--space-6);
+}
+
 /* button_to の form をリセット */
 .btn-action-form {
     display: inline;
@@ -230,36 +260,16 @@ Component Size Tokens
     /* 枠線も消す */
 }
 
-
-/* ==================================================
-BODY app/views/layouts/application.html.erb
-================================================== */
-
-body {
-    font-family: var(--font-main);
-    background: var(--color-gray-50);
-    color: var(--color-gray-800);
-    line-height: 1.6;
-}
-
-.form_label--required::after {
-    content: " *";
-    color: var(--color-red);
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 /* ==================================================
 LAYOUT app/views/layouts/application.html.erb
 ================================================== */
 
 .container {
-    max-width: var();
+    flex: 1;
+    max-width: var(--content-medium-width);
+    width: 100%;
     margin: auto;
-    padding: 30px;
+    padding: 0 var(--space-4);
 }
 
 /* ==================================================
@@ -286,8 +296,13 @@ HEADER app/views/layouts/application.html.erb
     text-decoration: none;
 }
 
+/* .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} */
+
 .nav-right a {
-    margin-left: 20px;
     text-decoration: none;
     color: #555;
     font-weight: 500;
@@ -339,7 +354,7 @@ DASHBOARD app/views/items/dashboard.html.erb
 }
 
 .btn-dashboard {
-    background: #3b82f6;
+    background: var(--color-blue);
     font-weight: 600;
     padding: 10px 12px;
     border-radius: 6px;
@@ -481,7 +496,7 @@ button,
 }
 
 .btn-edit {
-    background: #3b82f6;
+    background: var(--color-blue);
     color: white;
 }
 
@@ -494,8 +509,12 @@ button,
 FORM app/views/devise/sessions/new.html.erb
 ================================================== */
 
-form {
+form,
+.form {
     background: white;
+    width: 100%;
+    max-width: var(--content-narrow-width);
+    margin: 0 auto;
     padding: 25px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
@@ -537,6 +556,7 @@ SEARCH BOX　app/views/items/index.html.erb
     align-items: center;
     gap: var(--space-3);
     flex-wrap: wrap;
+    max-width: var(--content-medium-width);
 
     background: white;
     border-radius: var(--radius-md);
@@ -560,7 +580,7 @@ SEARCH BOX　app/views/items/index.html.erb
 }
 
 .search-box input[type="submit"] {
-    background: #3b82f6;
+    background: var(--color-blue);
     color: white;
     border: none;
     font-weight: 600;
@@ -681,7 +701,7 @@ Remember Me（ログイン画面）
     margin: 0;
 }
 
-h2 .form-title {
+.form-title {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -740,7 +760,7 @@ h2 .form-title {
 
 
 /* =================================
-Input Group (価格入力の¥マークなど) app/views/items/_form.html.erb
+Input Group (価格入力の¥マークなど) app/views/items/
 ================================= */
 
 .input-group {
@@ -811,4 +831,397 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
 .hidden-input {
     position: absolute;
     left: -9999px;
+}
+
+/* 商品登録ページと商品編集ページ専用に狭くしたcontainer */
+
+.container--narrow {
+    width: var(--content-narrow-width);
+}
+
+
+
+/* =========================
+    app/views/layouts/application.html.erb 
+  ========================= */
+
+/* ユーザーメニュー欄 */
+
+/* ===== ユーザーメニュー ===== */
+.user-menu {
+    position: relative;
+
+    &.active .user-dropdown-menu {
+        display: block;
+    }
+}
+
+/* ===== アバター ===== */
+.user-avatar {
+    width: var(--space-10);
+    height: var(--space-10);
+    border-radius: 50%;
+}
+
+/* ===== 名前 + ▼ ===== */
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.user-name {
+    font-weight: 300;
+    font-size: var(--space-5);
+}
+
+.user-dropdown {
+    font-size: var(--space-3);
+}
+
+/* ===== トグル ===== */
+.user-menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* ===== 名前 + ▼ ===== */
+.user-menu-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* ===== ドロップダウン ===== */
+.user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 140%;
+    right: 0;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-gray-100);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: var(--space-40);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: var(--z-dropdown);
+}
+
+/* show クラスでも開ける（reservation と統一) */
+.user-menu.show .user-dropdown-menu {
+    display: block;
+}
+
+/* ===== メニュー内リンク ===== */
+.user-dropdown-menu .dropdown-item {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-sm);
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: background-color var(--duration-fast),
+        color var(--duration-fast);
+}
+
+.user-dropdown-menu .dropdown-item:hover {
+    background-color: var(--color-bg-sub);
+}
+
+.user-dropdown-menu .dropdown-item.text-danger {
+    color: var(--color-red-blight);
+}
+
+
+/* =========================
+    Footer(共通)
+  ========================= */
+
+.footer {
+    margin-top: var(--space-10);
+    height: var(--footer-height);
+    flex-shrink: 0;
+    background-color: var(--color-blue-navy);
+}
+
+.footer-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo--footer {
+    height: 40px;
+    width: auto;
+    height: var(--logo-height-footer);
+}
+
+.copyright {
+    font-size: var(--font-sm);
+    color: var(--color-text-invert);
+    margin-top: var(--space-2);
+}
+
+
+
+/* =========================
+    app/views/users/_settings_layout.html.erb
+========================= */
+
+.settings {
+    margin-top: var(--space-4);
+}
+
+.settings h1 {
+    font-weight: normal;
+}
+
+.setting-wrapper {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-10);
+    margin-top: var(--space-10);
+}
+
+/* 箱 */
+.account-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--color-gray-200);
+    background: var(--color-bg-main);
+}
+
+/* 上下に並ぶ */
+.account-nav__item {
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.account-nav__item:last-child {
+    border-bottom: none;
+}
+
+.account-nav__link {
+    display: block;
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-size: var(--font-md);
+    font-weight: var(--font-medium);
+}
+
+.account-nav__link.active {
+    color: var(--color-blue);
+}
+
+.settings-content {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.settings-form {
+    background: white;
+    width: 100%;
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================
+    app/views/users/edit_account.html.erb
+    app/views/users/edit_profile.html.erb
+========================= */
+
+.settings-section {
+    margin-bottom: var(--space-32);
+}
+
+.settings-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-xl);
+    border-bottom: 1px solid var(--color-gray-300);
+}
+
+.settings-section__title {
+    font-weight: normal;
+    line-height: var(--leading-loose);
+}
+
+.settings-list {
+    margin-top: var(--space-10);
+}
+
+.settings-list__row {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.settings-list__label {
+    font-weight: var(--font-bold);
+    display: block;
+}
+
+.settings-list__value input,
+.settings-list__value textarea,
+.settings-list__value select {
+    width: 100%;
+    padding: 10px 12px;
+    /* 内側余白 */
+    border: 1px solid var(--color-gray-300);
+    /* 通常時 border */
+    border-radius: var(--radius-sm);
+    font-size: var(--font-md);
+    background: white;
+    box-sizing: border-box;
+}
+
+.settings-list__value input {
+    /* font-family: var(--font-gothic); */
+    font-size: var(--font-sm);
+    opacity: 1;
+}
+
+/* アイコン＋アップロードの横並び */
+.avatar-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+/* アイコン画像 */
+.avatar-container .user-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* file_field を右いっぱいに広げる */
+/* アイコン用の file_field は枠線なしに */
+.avatar-container input[type="file"] {
+    flex: 1;
+    /* 残りスペースを全部使う */
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    /* ファイル選択ボタンは paddingなし */
+    background: none;
+}
+
+.avatar-edit-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+.room-show-actions__icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    /* SVG の色を文字色に合わせる */
+}
+
+/* キャンセルボタン風リンク */
+.btn-cancel,
+.save-btn--primary {
+    display: inline-block;
+    padding: var(--space-6) var(--space-10);
+    /* 大きめ */
+    font-size: var(--font-md);
+    /* 少し大きく */
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: center;
+    min-width: var(--space-10);
+    /* 同じ幅に揃える場合 */
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* キャンセル */
+.btn-cancel {
+    border: 1px solid var(--color-gray-300);
+    background: white;
+    color: var(--color-text-main);
+}
+
+.btn-cancel:hover {
+    background: var(--color-gray-100);
+}
+
+/* 保存 */
+.save-btn--primary {
+    border: none;
+    background: var(--color-blue);
+    color: var(--color-white);
+}
+
+.save-btn--primary:hover {
+    opacity: 0.7;
+    /* 30% は不透明度としては 0.3 では強すぎるので 0.7 が自然 */
+}
+
+/* 右下に配置 */
+.settings-section__actions.actions-right {
+    display: flex;
+    justify-content: flex-end;
+    /* 右寄せ */
+    gap: var(--space-4);
+    /* ボタン間の余白 */
+    margin-top: var(--space-6);
+}
+
+
+/* =========================
+    Flash Messages
+========================= */
+
+.flash-message {
+    padding: var(--space-3) var(--space-10);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    max-width: var(--max-width);
+    /* コンテンツ幅に合わせる 1200px */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+/* 成功メッセージ（notice） */
+.flash-message.notice {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-invert);
+}
+
+/* エラーメッセージ（alert） */
+.flash-message.alert {
+    background-color: var(--color-error);
+    /* 薄い赤*/
+    color: var(--color-text-invert);
 }

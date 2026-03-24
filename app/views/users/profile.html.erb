@@ -1,0 +1,53 @@
+<%# app/views/users/my_page.html.erb %>
+<%= render "settings_layout" do %>
+
+<div class="settings-section">
+
+    <!-- ヘッダー -->
+    <div class="settings-section__header">
+        <h2 class="settings-section__title">プロフィール</h2>
+
+        <div class="setting-section-actions__right">
+        <%= link_to edit_profile_path, class: "avatar-edit-link" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="room-show-actions__icon">
+            <path d="M416.9 85.2L372 130.1L509.9 268L554.8 223.1C568.4 209.6 576 191.2 576 172C576 152.8 568.4 134.4 554.8 120.9L519.1 85.2C505.6 71.6 487.2 64 468 64C448.8 64 430.4 71.6 416.9 85.2zM338.1 164L122.9 379.1C112.2 389.8 104.4 403.2 100.3 417.8L64.9 545.6C62.6 553.9 64.9 562.9 71.1 569C77.3 575.1 86.2 577.5 94.5 575.2L222.3 539.7C236.9 535.6 250.2 527.9 261 517.1L476 301.9L338.1 164z"/>
+            </svg>
+            編集
+        <% end %>
+        </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="settings-list">
+
+        <!-- アイコン -->
+        <div class="settings-list__row">
+        <span class="settings-list__label">アイコン画像</span>
+        <div class="settings-list__value">
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100]) %>
+                <% else %>
+                <%= image_tag "default_user.png" %>
+            <% end %>
+        </div>
+        </div>
+
+        <!-- 名前 -->
+        <div class="settings-list__row">
+        <span class="settings-list__label">名前</span>
+        <span class="settings-list__value"><%= @user.name %></span>
+        </div>
+
+        <!-- 自己紹介 -->
+        <div class="settings-list__row">
+        <span class="settings-list__label">自己紹介</span>
+        <div class="settings-list__value">
+            <%= @user.bio.presence || "" %>
+        </div>
+        </div>
+
+    </div>
+
+</div>
+
+<% end %>

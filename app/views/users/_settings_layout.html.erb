@@ -1,0 +1,27 @@
+<!-- app/views/users/_settings_layout.html.erb -->
+<div class="settings">
+    <h1>設定</h1>
+    
+    <aside class="settings-menu">
+    
+    <div class="setting-wrapper">
+        <div class="setting-container">
+            <ul class="account-nav">
+            <li class="account-nav__item">
+                <%= link_to 'アカウント',
+                    account_path,
+                    class: "account-nav__link #{'active' if current_page?(account_path)}" %>
+            </li>
+        
+            <li class="account-nav__item">
+                <%= link_to 'プロフィール',
+                    profile_path,
+                    class: "account-nav__link #{'active' if current_page?(profile_path)}" %>
+            </li>
+            </ul>
+        </div>
+        <div class="settings-content">
+            <%= yield %>
+        </div>
+    </div>
+</div>
