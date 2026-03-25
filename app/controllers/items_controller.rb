@@ -14,11 +14,32 @@ class ItemsController < ApplicationController
   end
 
   # ===== 一覧 =====
+  # def index
+  #   @items = current_user.items
+  #   @items = @items.where(status: params[:status]) if params[:status].present?
+  #   @items = @items.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
+  #   @items = @items.where(category: params[:category]) if params[:category].present?
+  # end
+
   def index
     @items = current_user.items
+
     @items = @items.where(status: params[:status]) if params[:status].present?
     @items = @items.where("name LIKE ?", "%#{params[:keyword]}%") if params[:keyword].present?
     @items = @items.where(category: params[:category]) if params[:category].present?
+
+    case params[:sort]
+    when "new"
+      @items = @items.order(created_at: :desc)
+    when "old"
+      @items = @items.order(created_at: :asc)
+    when "price_high"
+      @items = @items.order(price: :desc)
+    when "price_low"
+      @items = @items.order(price: :asc)
+    else
+      @items = @items.order(created_at: :desc)
+    end
   end
 
   def show; end
@@ -39,6 +60,8 @@ class ItemsController < ApplicationController
   end
 
   def update
+    Rails.logger.debug "IMAGES PARAM: #{params[:item][:images].inspect}"
+
     @item = current_user.items.find(params[:id])
 
     # 削除指定の既存画像を消す

@@ -248,16 +248,42 @@ h3 {
 
 /* button_to の form をリセット */
 .btn-action-form {
-    display: inline;
+    display: inline-flex;
     /* 横並びにする */
     margin: 0;
     /* 余白を消す */
     padding: 0;
     /* 余白を消す */
-    background: none;
+    background: transparent;
     /* 白背景を消す */
     border: none;
     /* 枠線も消す */
+    box-shadow: none;
+    width: fit-content;
+}
+
+.btn-action-form button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 44px;
+
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-edit {
+    background: var(--color-blue);
+    color: white;
+}
+
+.btn-delete {
+    background: var(--color-red-blight);
+    color: white;
 }
 
 /* ==================================================
@@ -504,16 +530,6 @@ button,
     background: var(--color-blue-dark);
 }
 
-.btn-edit {
-    background: var(--color-blue);
-    color: white;
-}
-
-.btn-delete {
-    background: var(--color-red-blight);
-    color: white;
-}
-
 /* ==================================================
 FORM app/views/devise/sessions/new.html.erb
 ================================================== */
@@ -526,6 +542,9 @@ form,
     margin: 0 auto;
     padding: 25px;
     border-radius: var(--radius-md);
+}
+
+.form {
     box-shadow: var(--shadow-md);
 }
 
@@ -669,8 +688,12 @@ SEARCH BOX　app/views/items/index.html.erb
 /* 編集ボタン＋削除ボタン */
 .item-actions {
     margin-top: 20px;
-    display: flex;
     gap: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    /* ←横中央揃え */
 }
 
 /* 共通ボタンスタイル */
@@ -688,6 +711,20 @@ SEARCH BOX　app/views/items/index.html.erb
     transition: 0.2s;
     color: white;
     text-align: center;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: white;
+    width: 100px;
+    height: 44px;
 }
 
 /* ホバー共通 */
