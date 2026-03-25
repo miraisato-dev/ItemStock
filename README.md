@@ -17,7 +17,6 @@ Rails 7
 Ruby
 Devise
 ActiveStorage
-SQLite
 
 3. ER図
 
