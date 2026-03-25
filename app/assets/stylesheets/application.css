@@ -265,11 +265,15 @@ LAYOUT app/views/layouts/application.html.erb
 ================================================== */
 
 .container {
-    flex: 1;
     max-width: var(--content-medium-width);
     width: 100%;
     margin: auto;
     padding: 0 var(--space-4);
+}
+
+/* footerが浮かない containerにつけるとuserにも影響するためこれのみmainが管理 */
+main {
+    flex: 1;
 }
 
 /* ==================================================
@@ -304,11 +308,16 @@ HEADER app/views/layouts/application.html.erb
 
 .nav-right a {
     text-decoration: none;
-    color: #555;
+    /* color: #555; */
     font-weight: 500;
 }
 
-.nav-right a:hover {
+/* ログアウト */
+.nav-link:hover {
+    color: var(--color-blue);
+}
+
+.user-dropdown-menu a:hover {
     color: var(--color-blue);
 }
 
@@ -525,7 +534,7 @@ form,
     background: none;
     padding: 0;
     box-shadow: none;
-    margin-left: 20px;
+    margin: auto;
 }
 
 input,
@@ -923,7 +932,7 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
 /* ===== メニュー内リンク ===== */
 .user-dropdown-menu .dropdown-item {
     display: block;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-3);
     font-size: var(--font-sm);
     color: var(--color-text-main);
     text-decoration: none;
@@ -976,20 +985,31 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
 /* =========================
     app/views/users/_settings_layout.html.erb
 ========================= */
+/* 共通になってしまう */
+.settings-page {
+    display: flex;
+    justify-content: center;
+}
 
 .settings {
+    width: 100%;
     margin-top: var(--space-4);
+    max-width: var(--content-wide-width);
 }
 
 .settings h1 {
     font-weight: normal;
 }
 
+.settings-section__title {
+    margin-top: 0;
+}
+
 .setting-wrapper {
     display: grid;
     grid-template-columns: 240px 1fr;
     gap: var(--space-10);
-    margin-top: var(--space-10);
+    margin-top: var(--space-4);
 }
 
 /* 箱 */
@@ -1024,15 +1044,9 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
     color: var(--color-blue);
 }
 
-.settings-content {
+.settings form {
     background: white;
-    padding: var(--space-6);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-}
-
-.settings-form {
-    background: white;
+    max-width: none;
     width: 100%;
     padding: var(--space-6);
     border-radius: var(--radius-md);
@@ -1046,7 +1060,7 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
 ========================= */
 
 .settings-section {
-    margin-bottom: var(--space-32);
+    margin-bottom: var(--space-10);
 }
 
 .settings-section__header {
@@ -1190,7 +1204,6 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
     /* ボタン間の余白 */
     margin-top: var(--space-6);
 }
-
 
 /* =========================
     Flash Messages

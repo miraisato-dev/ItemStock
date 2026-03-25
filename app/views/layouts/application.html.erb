@@ -46,7 +46,7 @@
                   <li><%= link_to "出品中", listed_items_path, class: "dropdown-item" %></li>
                   <li><%= link_to "売却済み", sold_items_path, class: "dropdown-item" %></li>
                   <li><%= link_to "アカウント設定", account_path, class: "dropdown-item"  %></li>
-                  <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, form: { class: "logout-form" }, class: "nav-link" %></li>
+                  <li class="logout-li"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, form: { class: "logout-form" }, class: "nav-link" %></li>
                 </ul>
             </div>
           <% else %>
@@ -58,8 +58,8 @@
       </nav>
     </header>
 
-    <!-- メイン -->
-    <main class="container">
+    <!-- メイン view/usersのみ例外 -->
+    <main class="<%= 'container' unless controller_name == 'users' %>">
       <%= yield %>
     </main>
 

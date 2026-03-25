@@ -1,0 +1,64 @@
+<%# app/views/users/account.html.erb %>
+<%= render "settings_layout" do %>
+
+<div class="settings-section">
+
+    <!-- ヘッダー -->
+    <div class="settings-section__header">
+        <h2 class="settings-section__title">アカウント</h2>
+    </div>
+
+    <%= form_with model: @user, url: account_path, method: :patch, local: true do |f| %>
+
+        <div class="settings-list">
+
+        <!-- メールアドレス -->
+        <div class="settings-list__row">
+            <%= f.label :email, "メールアドレス", class: "settings-list__label" %>
+            <div class="settings-list__value">
+            <%= f.email_field :email, placeholder:"メールアドレスを入力" %>
+            </div>
+        </div>
+
+        <!-- パスワード -->
+        <div class="settings-list__row">
+            <div>
+            <%= f.label :password, "パスワード", class: "settings-list__label" %>
+            <small class="input-note">※変更する場合のみ</small>
+            </div>
+            <div class="settings-list__value">
+            <%= f.password_field :password, autocomplete: "new-password", placeholder:"変更後パスワードを入力" %>
+            </div>
+        </div>
+
+        <!-- 確認用パスワード -->
+        <div class="settings-list__row">
+            <div>
+            <%= f.label :password_confirmation, "確認用パスワード", class: "settings-list__label" %>
+            <small class="input-note">※変更する場合のみ</small>
+            </div>
+            <div class="settings-list__value">
+            <%= f.password_field :password_confirmation, placeholder:"変更後パスワードを入力" %>
+            </div>
+        </div>
+
+        <!-- 現在のパスワード -->
+        <div class="settings-list__row">
+            <%= f.label :current_password, "現在のパスワード", class: "settings-list__label" %>
+            <div class="settings-list__value">
+            <%= f.password_field :current_password, placeholder:"現在のパスワードを入力" %>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="settings-section__actions actions-right">
+        <a href="<%= account_path %>" class="btn-cancel">キャンセル</a>
+        <%= f.submit "保存", class: "save-btn--primary" %>
+        </div>
+
+    <% end %>
+
+</div>
+
+<% end %>
