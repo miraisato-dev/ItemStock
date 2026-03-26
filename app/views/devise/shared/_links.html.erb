@@ -1,0 +1,15 @@
+<div class="auth-links">
+
+  <% if controller_name != 'sessions' %>
+    <%= link_to "ログインはこちら", new_user_session_path, class: "form-btn form-btn--secondary" %>
+  <% end %>
+
+  <% if controller_name != 'registrations' %>
+    <%= link_to "新規登録はこちら", new_user_registration_path, class: "form-btn form-btn--secondary" %>
+  <% end %>
+
+  <% if controller_name != 'passwords' %>
+    <%= link_to "パスワードを忘れた方", new_user_password_path, class: "form-btn form-btn--secondary" %>
+  <% end %>
+
+</div>

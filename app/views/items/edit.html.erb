@@ -1,12 +1,37 @@
-<% content_for :title, "Editing item" %>
+<%# app/views/items/edit.html.erb %>
 
-<h1>Editing item</h1>
+<div class="container container--narrow">
+  <h2>商品編集</h2>
+  <%= form_with(model: @item, local: true, multipart: true) do |form| %>
 
-<%= render "form", item: @item %>
+    <%# app/views/items/_form_fields.html.erb %>
+    <%= render "form_fields", form: form, item: @item %>
 
-<br>
+    <div id="image-upload-edit" class="image-upload">
+      <%# <input type="file" id="image_input" multiple style="display: none;"> %>
+      <%= form.file_field :images, multiple: true %>
+      <div id="file_trigger" class="fake-input">画像を追加</div>
 
-<div>
-  <%= link_to "Show this item", @item %> |
-  <%= link_to "Back to items", items_path %>
+      <!-- 既存画像 -->
+      <div id="existing-images">
+        <% @item.images.each do |image| %>
+          <div class="preview-item existing-image" data-image-id="<%= image.id %>">
+            <%= image_tag url_for(image), style: "width:80px;height:80px;object-fit:cover;" %>
+            <span><%= image.filename %></span>
+            <button type="button" class="remove-existing-btn">×</button>
+            <!-- hidden input で既存画像IDも送信 -->
+            <input type="hidden" name="item[existing_image_ids][]" value="<%= image.id %>">
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 新規追加画像 -->
+      <div id="preview"></div>
+      <div id="image_fields" class="hidden-input"></div>
+    </div>
+
+    <div>
+      <%= form.submit "更新" %>
+    </div>
 </div>
+<% end %>

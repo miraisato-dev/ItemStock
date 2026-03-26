@@ -1,23 +1,84 @@
+<%# app/views/layouts/application.html.erb %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Mercari Helper" %></title>
+    <title><%= content_for(:title) || "ItemStock" %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%# <%= favicon_link_tag('itemstock_favicon.png') %>
+    <%= favicon_link_tag('icon.png') %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <!-- ヘッダー -->
+    <header class="header">
+      <nav class="nav">
+
+        <div class="nav-left">
+          <%= link_to dashboard_path, class: "logo" do %>
+            <%= image_tag "icon.png", class: "logo-img", alt: "ItemStock" %>
+            <span class="logo-text">ItemStock</span>
+          <% end %>
+        </div>
+
+        <div class="nav-right">
+          <% if current_user %>
+            <div class="user-menu" data-controller="user-menu">
+            <!-- ユーザーメニュー(ログインしている時のみ表示される) -->
+              <button class="user-menu-toggle btn btn-link p-0" type="button">
+                <%= image_tag current_user.avatar.attached? ? current_user.avatar : "default_user.png",
+                              class: "user-avatar" %>
+                <div class="user-menu-label">
+                  <span class="user-name"><%= current_user.name %></span>
+                  <span class="user-caret">&#9662;</span> <!-- 下矢印 -->
+                </div>
+              </button>
+                <ul class="user-dropdown-menu">
+                  <li><%= link_to "アイテム登録", new_item_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "出品前", before_listing_items_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "出品中", listed_items_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "売却済み", sold_items_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "アカウント設定", account_path, class: "dropdown-item"  %></li>
+                  <li class="logout-li"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, form: { class: "logout-form" }, class: "nav-link" %></li>
+                </ul>
+            </div>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-login" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+
+      </nav>
+    </header>
+
+    <!-- メイン view/usersのみ例外 -->
+    <main class="<%= 'container' unless controller_name == 'users' %>">
+      <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <!-- ロゴ画像（ホームへ） -->
+        <%= link_to root_path, class: "footer-logo-link" do %>
+          <%# <%= image_tag "logo.png", class: "logo logo--footer" %>
+        <% end %>
+
+        <!-- コピーライト -->
+        <p class="copyright">
+          Copyright © ItemStock 2026 All rights reserved to Mirai Sato
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

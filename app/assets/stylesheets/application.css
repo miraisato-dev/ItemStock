@@ -1,52 +1,1470 @@
 @charset "UTF-8";
 
-CSS .status {
-    padding: 4px 8px;
-    border-radius: 5px;
+/* ==================================================
+ROOT VARIABLES
+================================================== */
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.status.未出品 {
-    background: gray;
-    color: white;
+:root {
+    /* =========================
+    Color System
+  ========================= */
+
+    /* Base colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Gray scale */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2933;
+    --color-gray-900: #111827;
+
+    /* Brand colors */
+    --color-blue: #3b82f6;
+    --color-blue-light: #60a5fa;
+    --color-blue-dark: #1e40af;
+    --color-blue-navy: #1c1d3b;
+
+    --color-green: #10b981;
+    --color-green-light: #6ee7b7;
+    --color-green-dark: #047857;
+
+    /* Semantic colors */
+    --color-green-blight: #22c55e;
+    --color-orange-blight: #ff7757;
+    --color-red-blight: #ef4444;
+    --color-blue-blight: #0ea5e9;
+    --color-success: var(--color-green);
+    --color-warning: var(--color-orange-blight);
+    --color-error: var(--color-red-blight);
+    --color-info: var(--color-blue-blight);
+    --color-error-bg: #fee2e2;
+    --color-error-border: #fecaca;
+    --color-error-text: #991b1b;
+
+    /* Text colors */
+    --color-text-main: #111827;
+    --color-text-sub: #374151;
+    --color-text-muted: #767e86;
+    --color-text-invert: #ffffff;
+
+    /* Background colors */
+    --color-bg-main: #ffffff;
+    --color-bg-sub: #f9fafb;
+    --color-bg-gray: rgba(238, 238, 238, 0.94);
+    --color-bg-dark: #111827;
+
+    /* Background colors + colors*/
+    --dark-navy: #020c1b;
+    --navy: #0a192f;
+    --light-navy: #112240;
+    --lightest-navy: #233554;
+    --navy-shadow: #020c1bb3;
+    --slate: #8892b0;
+    --light-slate: #a8b2d1;
+    --lightest-slate: #ccd6f6;
+    --white: #e6f1ff;
+    --green-bright: #64ffda;
+    --green-tint: #64ffda1a;
+    --blue-grey: #dfe2e6;
+    --light-red: #eb6969;
+    --light-orange: #fff8f1;
+
+    /* =========================
+    Typography
+  ========================= */
+    /* Typography */
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+
+
+    /* Font size */
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-md: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+    --font-4xl: 2.25rem;
+
+    /* Font weight */
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-bold: 700;
+
+    /* Line height */
+    --leading-tight: 1.25;
+    --leading-normal: 1.6;
+    --leading-loose: 1.8;
+
+    /* =========================
+Component Size Tokens
+========================= */
+
+    --size-btn-y: var(--space-2);
+    --size-btn-x: var(--space-4);
+
+    --size-input-y: var(--space-2);
+    --size-input-x: var(--space-3);
+
+    --size-table-cell-y: var(--space-3);
+    --size-table-cell-x: var(--space-4);
+
+    --size-badge-y: var(--space-1);
+    --size-badge-x: var(--space-3);
+
+    --size-card-padding: var(--space-6);
+    --size-section-gap: var(--space-5);
+
+    /* =========================
+    Spacing
+  ========================= */
+
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    --space-40: 10rem;
+    --space-48: 12rem;
+    --space-56: 14rem;
+
+    /* =========================
+    Layout
+  ========================= */
+
+    --content-max-width: 1400px;
+    --content-wide-width: 1200px;
+    --content-medium-width: 960px;
+    --content-narrow-width: 720px;
+    --content-super-narrow-width: 640px;
+
+    /* Breakpoints */
+    --bp-xs: 320px;
+    --bp-s: 480px;
+    --bp-sm: 520px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+
+    /* Header & Footer height */
+    --header-height: 80px;
+    --footer-height: 120px;
+    --logo-height-header: 32px;
+    --logo-height-footer: 40px;
+
+    /* =========================
+    Radius
+  ========================= */
+
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --radius-full: 50%;
+
+    /* =========================
+    Shadow
+  ========================= */
+
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, .15);
+
+    /* =========================
+    Z-index
+  ========================= */
+
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-header: 200;
+    --z-modal: 500;
+    --z-toast: 1000;
+
+    /* =========================
+    Animation
+  ========================= */
+
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.status.出品中 {
-    background: blue;
-    color: white;
+
+/* ==================================================
+    共通 + app/views/layouts/application.html.erb
+================================================== */
+
+body {
+    font-family: var(--font-main);
+    background: var(--color-gray-50);
+    color: var(--color-gray-800);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.status.売却済み {
-    background: green;
-    color: white;
+.form_label--required::after {
+    content: " *";
+    color: var(--color-red);
 }
 
-.items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
-    gap: 20px;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.item-card {
-    border: 1px solid #ddd;
-    padding: 10px;
+h1,
+h2,
+h3 {
+    margin-top: var(--space-6);
+}
+
+/* button_to の form をリセット */
+.btn-action-form {
+    display: inline-flex;
+    /* 横並びにする */
+    margin: 0;
+    /* 余白を消す */
+    padding: 0;
+    /* 余白を消す */
+    background: transparent;
+    /* 白背景を消す */
+    border: none;
+    /* 枠線も消す */
+    box-shadow: none;
+    width: fit-content;
+}
+
+.btn-action-form button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 44px;
+
     border-radius: 10px;
-    background: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
 }
 
-.item-image {
+.btn-edit {
+    background: var(--color-blue);
+    color: white;
+}
+
+.btn-delete {
+    background: var(--color-red-blight);
+    color: white;
+}
+
+/* ==================================================
+LAYOUT app/views/layouts/application.html.erb
+================================================== */
+
+.container {
+    max-width: var(--content-medium-width);
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    margin: auto;
+    padding: 0 var(--space-4);
 }
 
-.actions {
+/* footerが浮かない containerにつけるとuserにも影響するためこれのみmainが管理 */
+main {
+    flex: 1;
+}
+
+/* ==================================================
+HEADER app/views/layouts/application.html.erb
+================================================== */
+
+.header {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding:
+        var(--space-6) var(--space-6);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 1em;
+    /* 文字サイズと合わせる */
+    width: auto;
+}
+
+.logo-text {
+    line-height: 1;
+}
+
+/* .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} */
+
+.nav-right a {
+    text-decoration: none;
+    /* color: #555; */
+    font-weight: 500;
+}
+
+/* ログアウト */
+.nav-link:hover {
+    color: var(--color-blue);
+}
+
+.user-dropdown-menu a:hover {
+    color: var(--color-blue);
+}
+
+
+/* =========================
+TOP PAGE
+========================= */
+
+.top-page {
+    width: 100%;
+}
+
+/* =========================
+
+========================= */
+
+.hero,
+.cta {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+    padding: var(--space-20) 0;
+    background: linear-gradient(135deg,
+            var(--color-blue),
+            var(--color-blue-light));
+    color: white;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-10);
+}
+
+.hero-text h2 {
+    font-size: var(--font-4xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-4);
+}
+
+.hero-text p {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.hero .btn.primary {
+    background: white;
+    color: var(--color-blue);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-bold);
+}
+
+.hero .btn.primary:hover {
+    background: var(--color-gray-100);
+}
+
+.hero .btn.outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+}
+
+.hero .btn.outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 画像 */
+.hero-image img {
+    max-width: 400px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--color-white);
+}
+
+/* =========================
+FEATURES
+========================= */
+
+.features {
+    padding: var(--space-20) 0;
+    background: var(--color-bg-sub);
+    text-align: center;
+}
+
+.features h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--space-10);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+}
+
+.feature-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+}
+
+.feature-card h4 {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-3);
+}
+
+.feature-card p {
+    color: var(--color-text-sub);
+    font-size: var(--font-sm);
+}
+
+/* =========================
+CTA
+========================= */
+
+.cta {
+    padding: var(--space-20) 0;
+    text-align: center;
+    background: var(--color-blue-navy);
+    color: white;
+}
+
+.cta h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--space-6);
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.cta .btn.primary {
+    background: white;
+    color: var(--color-blue-navy);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-bold);
+}
+
+.cta .btn.outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+}
+
+.cta .btn.primary:hover {
+    background: var(--color-gray-100);
+}
+
+.cta .btn.outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==================================================
+DASHBOARD app/views/items/dashboard.html.erb
+================================================== */
+
+.dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.dashboard-grid a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard-card {
+    padding: 22px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    opacity: 0.95;
+}
+
+.dashboard-card h2 {
+    font-size: 30px;
     margin-top: 10px;
 }
 
-.new-button {
-    padding: 10px 20px;
-    background: #ff5a5f;
+.btn-dashboard {
+    background: var(--color-blue);
+    font-weight: 600;
+    padding: 10px 12px;
+    border-radius: 6px;
     color: white;
-    border-radius: 5px;
+}
+
+.btn-dashboard:hover {
+    background: #2563eb;
+}
+
+
+
+/* Dashboard colors */
+
+.card-total {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.card-candidate {
+    background: linear-gradient(135deg, #06b6d4, #67e8f9);
+}
+
+.card-selling {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+.card-sold {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+/* Dashboard footer */
+
+.dashboard-footer {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-footer p {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* ==================================================
+TABLE app/views/items/index.html.erb
+================================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+/* table の th, td 全体 */
+th,
+td {
+    padding:
+        var(--size-table-cell-y) var(--size-table-cell-x);
+    text-align: center;
+    /* 横中央 */
+    vertical-align: middle;
+    /* 縦中央 */
+}
+
+th {
+    background: #f9fafb;
+    font-weight: 600;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* ==================================================
+STATUS LABEL app/views/items/_item.html.erb
+================================================== */
+
+.status {
+    padding:
+        var(--size-badge-y) var(--size-badge-x);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: white;
+
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.status-draft {
+    background: #06b6d4;
+}
+
+.status-listed {
+    background: #22c55e;
+}
+
+.status-sold {
+    background: #f59e0b;
+}
+
+.status-keep {
+    background: #6b7280;
+}
+
+/* ==================================================
+BUTTONS app/views/items/_item.html.erb
+================================================== */
+
+button,
+.btn {
+    padding:
+        var(--size-btn-y) var(--size-btn-x);
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
     text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--color-blue);
+    color: white;
+}
+
+.btn-login:hover {
+    color: var(--color-blue);
+}
+
+.btn-primary:hover {
+    background: var(--color-blue-dark);
+}
+
+/* ==================================================
+FORM app/views/devise/sessions/new.html.erb
+================================================== */
+
+form,
+.form {
+    background: white;
+    width: 100%;
+    max-width: var(--content-narrow-width);
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: var(--radius-md);
+}
+
+.form {
+    box-shadow: var(--shadow-md);
+}
+
+.logout-form {
+    display: inline;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    margin: auto;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding:
+        var(--size-input-y) var(--size-input-x);
+    border-radius: var(--radius-sm);
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-blue);
+}
+
+/* ==================================================
+SEARCH BOX　app/views/items/index.html.erb
+================================================== */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    max-width: var(--content-medium-width);
+
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+.search-box input[type="text"] {
+    flex: 1;
+    min-width: 220px;
+    width: 220px;
+}
+
+.search-box input,
+.search-box select {
+    width: auto;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-box input[type="submit"] {
+    background: var(--color-blue);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+/* =================================
+    Item Detail app/views/items/_item.html.erb
+================================= */
+
+/* アイテム詳細 */
+.item-detail {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* レイアウト */
+.item-detail-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* サムネイル  */
+.item-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* サムネイル */
+.item-thumbnails img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* メイン画像 */
+.item-main-image img {
+    width: 350px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+
+/* アイテム情報  */
+.item-info {
+    flex: 1;
+}
+
+/* グレーの線を引いて欄を作る */
+.item-info p {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+/* 項目名を太字にしてスペースを空ける */
+.item-info strong {
+    color: #555;
+    margin-right: 10px;
+}
+
+/* ステータスを表示する 商品詳細ページと商品一覧ページ */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: white;
+    background: #2ea44f;
+}
+
+/* 編集ボタン＋削除ボタン */
+.item-actions {
+    margin-top: 20px;
+    gap: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    /* ←横中央揃え */
+}
+
+/* 共通ボタンスタイル */
+.btn-action,
+.btn-action a,
+.btn-action button {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+    text-align: center;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: white;
+    width: 100px;
+    height: 44px;
+}
+
+/* ホバー共通 */
+.btn-action:hover {
+    opacity: 0.85;
+}
+
+/* =================================
+Remember Me（ログイン画面）
+================================= */
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.actions input {
+    width: 100%;
+    background: var(--color-blue);
+    color: white;
+    font-weight: 600;
+}
+
+.form-actions {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-actions form {
+    margin: 0;
+}
+
+/* 共通ボタン */
+.form-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* メイン（登録） */
+.form-btn--primary {
+    background: var(--color-blue);
+    color: white;
+}
+
+.form-btn--primary:hover {
+    background: var(--color-blue-dark);
+}
+
+/* サブ（ログイン） */
+.form-btn--secondary {
+    background: white;
+    color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+}
+
+.form-btn--secondary:hover {
+    background: var(--color-gray-100);
+}
+
+
+/* =================================
+Input Group (価格入力の¥マークなど) app/views/items/
+================================= */
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-prepend {
+    padding: 0 0.5em;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    line-height: 2em;
+}
+
+.input-group input[type="number"] {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    flex: 1;
+}
+
+/* =================================
+Image Preview (画像プレビュー) app/views/items/_form.html.erb
+================================= */
+
+/* fake file button */
+.fake-input {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+/* preview list */
+#preview {
+    margin-top: 10px;
+}
+
+/* each row */
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+/* file name */
+.preview-item span {
+    font-size: 14px;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* thumbnail */
+.preview-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.hidden-input {
+    position: absolute;
+    left: -9999px;
+}
+
+/* 商品登録ページと商品編集ページ専用に狭くしたcontainer */
+
+.container--narrow {
+    width: var(--content-narrow-width);
+}
+
+
+
+/* =========================
+    app/views/layouts/application.html.erb 
+  ========================= */
+
+/* ユーザーメニュー欄 */
+
+/* ===== ユーザーメニュー ===== */
+.user-menu {
+    position: relative;
+
+    &.active .user-dropdown-menu {
+        display: block;
+    }
+}
+
+/* ===== アバター ===== */
+.user-avatar {
+    width: var(--space-10);
+    height: var(--space-10);
+    border-radius: 50%;
+}
+
+/* ===== 名前 + ▼ ===== */
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.user-name {
+    font-weight: 300;
+    font-size: var(--space-5);
+}
+
+.user-dropdown {
+    font-size: var(--space-3);
+}
+
+/* ===== トグル ===== */
+.user-menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* ===== 名前 + ▼ ===== */
+.user-menu-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* ===== ドロップダウン ===== */
+.user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 140%;
+    right: 0;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-gray-100);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: var(--space-40);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: var(--z-dropdown);
+}
+
+/* show クラスでも開ける（reservation と統一) */
+.user-menu.show .user-dropdown-menu {
+    display: block;
+}
+
+/* ===== メニュー内リンク ===== */
+.user-dropdown-menu .dropdown-item {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-sm);
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: background-color var(--duration-fast),
+        color var(--duration-fast);
+}
+
+.user-dropdown-menu .dropdown-item:hover {
+    background-color: var(--color-bg-sub);
+}
+
+.user-dropdown-menu .dropdown-item.text-danger {
+    color: var(--color-red-blight);
+}
+
+
+/* =========================
+    Footer(共通)
+  ========================= */
+
+.footer {
+    margin-top: var(--space-10);
+    height: var(--footer-height);
+    flex-shrink: 0;
+    background-color: var(--color-blue-navy);
+}
+
+.footer-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo--footer {
+    height: 40px;
+    width: auto;
+    height: var(--logo-height-footer);
+}
+
+.copyright {
+    font-size: var(--font-sm);
+    color: var(--color-text-invert);
+    margin-top: var(--space-2);
+}
+
+
+
+/* =========================
+    app/views/users/_settings_layout.html.erb
+========================= */
+/* 共通になってしまう */
+.settings-page {
+    display: flex;
+    justify-content: center;
+}
+
+.settings {
+    width: 100%;
+    margin-top: var(--space-4);
+    max-width: var(--content-wide-width);
+}
+
+.settings h1 {
+    font-weight: normal;
+}
+
+.settings-section__title {
+    margin-top: 0;
+}
+
+.setting-wrapper {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-10);
+    margin-top: var(--space-4);
+}
+
+/* 箱 */
+.account-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--color-gray-200);
+    background: var(--color-bg-main);
+}
+
+/* 上下に並ぶ */
+.account-nav__item {
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.account-nav__item:last-child {
+    border-bottom: none;
+}
+
+.account-nav__link {
+    display: block;
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-size: var(--font-md);
+    font-weight: var(--font-medium);
+}
+
+.account-nav__link.active {
+    color: var(--color-blue);
+}
+
+.settings form {
+    background: white;
+    max-width: none;
+    width: 100%;
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================
+    app/views/users/edit_account.html.erb
+    app/views/users/edit_profile.html.erb
+========================= */
+
+.settings-section {
+    margin-bottom: var(--space-10);
+}
+
+.settings-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-xl);
+    border-bottom: 1px solid var(--color-gray-300);
+}
+
+.settings-section__title {
+    font-weight: normal;
+    line-height: var(--leading-loose);
+}
+
+.settings-list {
+    margin-top: var(--space-10);
+}
+
+.settings-list__row {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.settings-list__label {
+    font-weight: var(--font-bold);
+    display: block;
+}
+
+.settings-list__value input,
+.settings-list__value textarea,
+.settings-list__value select {
+    width: 100%;
+    padding: 10px 12px;
+    /* 内側余白 */
+    border: 1px solid var(--color-gray-300);
+    /* 通常時 border */
+    border-radius: var(--radius-sm);
+    font-size: var(--font-md);
+    background: white;
+    box-sizing: border-box;
+}
+
+.settings-list__value input {
+    /* font-family: var(--font-gothic); */
+    font-size: var(--font-sm);
+    opacity: 1;
+}
+
+/* アイコン＋アップロードの横並び */
+.avatar-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+/* アイコン画像 */
+.avatar-container .user-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* file_field を右いっぱいに広げる */
+/* アイコン用の file_field は枠線なしに */
+.avatar-container input[type="file"] {
+    flex: 1;
+    /* 残りスペースを全部使う */
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    /* ファイル選択ボタンは paddingなし */
+    background: none;
+}
+
+.avatar-edit-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+.room-show-actions__icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    /* SVG の色を文字色に合わせる */
+}
+
+/* キャンセルボタン風リンク */
+.btn-cancel,
+.save-btn--primary {
+    display: inline-block;
+    padding: var(--space-6) var(--space-10);
+    /* 大きめ */
+    font-size: var(--font-md);
+    /* 少し大きく */
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: center;
+    min-width: var(--space-10);
+    /* 同じ幅に揃える場合 */
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* キャンセル */
+.btn-cancel {
+    border: 1px solid var(--color-gray-300);
+    background: white;
+    color: var(--color-text-main);
+}
+
+.btn-cancel:hover {
+    background: var(--color-gray-100);
+}
+
+/* 保存 */
+.save-btn--primary {
+    border: none;
+    background: var(--color-blue);
+    color: var(--color-white);
+}
+
+.save-btn--primary:hover {
+    opacity: 0.7;
+    /* 30% は不透明度としては 0.3 では強すぎるので 0.7 が自然 */
+}
+
+/* 右下に配置 */
+.settings-section__actions.actions-right {
+    display: flex;
+    justify-content: flex-end;
+    /* 右寄せ */
+    gap: var(--space-4);
+    /* ボタン間の余白 */
+    margin-top: var(--space-6);
+}
+
+/* =========================
+    Flash Messages
+========================= */
+
+.flash-message {
+    padding: var(--space-3) var(--space-10);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    max-width: var(--max-width);
+    /* コンテンツ幅に合わせる 1200px */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+/* 成功メッセージ（notice） */
+.flash-message.notice {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-invert);
+}
+
+/* エラーメッセージ（alert） */
+.flash-message.alert {
+    background-color: var(--color-error);
+    /* 薄い赤*/
+    color: var(--color-text-invert);
 }

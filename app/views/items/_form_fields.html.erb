@@ -1,0 +1,39 @@
+<%# app/views/items/_form_fields.html.erb %>
+<%# アイテム登録ページとアイテム編集ページの共通フィールド %>
+
+<div>
+    <%= form.label :name, "商品名", style: "display: block" %>
+    <%= form.text_field :name, placeholder: "例: 羅生門" %>
+</div>
+
+<div>
+    <%= form.label :category, "カテゴリー", style: "display: block" %>
+    <%= form.select :category,
+        Item.categories.keys.map { |k| [I18n.t("enums.item.category.#{k}"), k] },
+        { include_blank: "カテゴリーを選択" } %>
+</div>
+
+<div>
+    <%= form.label :price, "値段", style: "display: block" %>
+    <%= form.number_field :price, placeholder: "¥5000" %>
+</div>
+
+<div>
+    <%= form.label :status, "ステータス", style: "display: block" %>
+    <%= form.select :status,
+        Item.enum_select_options(:status),
+        { include_blank: "ステータスを選択" } %>
+</div>
+
+<div>
+    <%= form.label :description, "商品説明", style: "display: block" %>
+    <%= form.text_area :description, placeholder: "商品の説明を入力してください" %>
+</div>
+
+<div>
+    <%= form.label :memo, "メモ", style: "display: block" %>
+    <%= form.text_area :memo, placeholder: "メモを入力してください" %>
+</div>
+
+<%# ユーザーIDを隠しフィールドで送信 %>
+<%= form.hidden_field :user_id, value: current_user.id %>

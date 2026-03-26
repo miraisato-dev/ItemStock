@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_05_084101) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_24_181037) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_05_084101) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -59,6 +60,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_05_084101) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

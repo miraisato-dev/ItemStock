@@ -1,37 +1,37 @@
 <%# app/views/items/_item.html.erb %>
-<h1>商品詳細</h1>
-<div id="<%= dom_id item %>">
-  <p>
-    <strong>商品タイトル:</strong>
-    <%= item.name %>
-  </p>
+<h1>商品詳細ページ: <%= item.name %></h1>
+<div class="item-detail">
+  <div class="item-detail-container">
 
-  <p>
-    <strong>説明:</strong>
-    <%= item.description %>
-  </p>
+    <div class="item-thumbnails">
+      <% item.images.each do |image| %>
+        <%= image_tag image %>
+      <% end %>
+    </div>
 
-  <p>
-    <strong>値段:</strong>
-    <%= item.price %>
-  </p>
+    <div class="item-main-image">
+      <%= image_tag item.images.first if item.images.attached? %>
+    </div>
 
-  <p>
-    <strong>ステータス:</strong>
-    <%= item.status %>
-  </p>
+    <div class="item-info">
+      <p><strong>商品名:</strong> <%= item.name %></p>
+      <p><strong>カテゴリー:</strong> <%= item.category_i18n || "未設定" %></p>
+      <p><strong>値段:</strong> ¥<%= item.price %></p>
+      <p><strong>ステータス:</strong>
+        <span class="status-badge"><%= item.status_i18n %></span>
+      </p>
+      <p><strong>商品説明:</strong> <%= item.description %></p>
+      <p><strong>メモ:</strong> <%= item.memo %></p>
 
-  <p>
-    <strong>メモ:</strong>
-    <%= item.memo %>
-  </p>
+      <div class="item-actions">
+        <%= link_to "編集", edit_item_path(item), class: "btn-action btn-edit" %>
 
-  <% if item.images.attached? %>
-    <h3>Images</h3>
-
-    <% item.images.each do |image| %>
-      <%= image_tag image, width: 200 %>
-    <% end %>
-  <% end %>
-
+        <%= button_to "削除", item,
+              method: :delete,
+              form: { class: "btn-action-form" },
+              class: "btn-action btn-delete",
+              onclick: "return confirm('本当に削除しますか？')" %>
+      </div>
+    </div>
+  </div>
 </div>

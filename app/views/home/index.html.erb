@@ -1,0 +1,62 @@
+<%# app/views/home/index.html.erb %>
+<!-- ヒーロー -->
+<section class="hero">
+    <div class="container hero-inner">
+    <div class="hero-text">
+        <h2>アイテム管理を、<br>もっとシンプルに</h2>
+        <p>
+        在庫管理から出品・売却まで、すべてを一つに。<br>
+        面倒な管理を、スマートに。
+        </p>
+
+        <div class="hero-actions">
+        <% if current_user %>
+            <%= link_to "ダッシュボードへ", dashboard_path, class: "btn primary" %>
+        <% else %>
+            <%= link_to "無料で始める", new_user_registration_path, class: "btn primary" %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn outline" %>
+        <% end %>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <%= image_tag "icon.png", alt: "dashboard" %>
+    </div>
+    </div>
+    </section>
+
+    <!-- 機能 -->
+    <section class="features">
+    <div class="container">
+    <h3>ItemStockでできること</h3>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+        <h4>在庫を管理</h4>
+        <p>すべてのアイテムをまとめて管理・検索</p>
+        </div>
+
+        <div class="feature-card">
+        <h4>出品ステータス管理</h4>
+        <p>出品前・出品中・売却済みを一目で把握</p>
+        </div>
+
+        <div class="feature-card">
+        <h4>売上を自動集計</h4>
+        <p>売却データから売上を自動計算</p>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+    <div class="container">
+    <h3>今すぐItemStockを始めてみませんか？</h3>
+
+    <div class="cta-actions">
+        <%= link_to "無料で登録する", new_user_registration_path, class: "btn primary" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn outline" %>
+    </div>
+    </div>
+</section>

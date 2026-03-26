@@ -1,0 +1,50 @@
+<!-- app/views/users/edit_profile.html.erb -->
+<%= render 'settings_layout' do %>
+
+<div class="settings-section">
+    <div class="settings-section__header">
+        <h2 class="settings-section__title">プロフィール</h2>
+    </div>
+
+    <%= form_with model: @user, url: profile_path, local: true do |f| %>
+
+        <div class="settings-list">
+
+        <!-- アイコン -->
+        <div class="settings-list__row">
+            <%= f.label :avatar, "アイコン画像", class: "settings-list__label" %>
+
+            <div class="avatar-container">
+            <%= image_tag "default_user.png", class: "user-avatar" %>
+            <%= f.file_field :avatar %>
+            </div>
+        </div>
+
+        <!-- 名前 -->
+        <div class="settings-list__row">
+            <%= f.label :name, "名前", class: "settings-list__label"%>
+            <div class="settings-list__value">
+            <%= f.text_field :name, placeholder: "名前を入力" %>
+            </div>
+        </div>
+
+        <!-- 自己紹介 -->
+        <div class="settings-list__row">
+            <%= f.label :bio, "自己紹介", class: "settings-list__label" %>
+            <div class="settings-list__value">
+            <%= f.text_area :bio , placeholder: "自己紹介を入力" %>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="settings-section__actions actions-right">
+        <a href="<%= account_path %>" class="btn-cancel">キャンセル</a>
+        <%= f.submit "保存", class: "save-btn--primary" %>
+        </div>
+
+    <% end %>
+
+    </div>
+
+<% end %>

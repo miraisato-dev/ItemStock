@@ -1,11 +1,21 @@
-<% content_for :title, "New item" %>
+<%# app/views/items/new.html.erb %>
+<div class="container container--narrow">
+  <h2>アイテム登録</h2>
+  <%= form_with(model: @item, local: true, multipart: true) do |form| %>
 
-<h1>New item</h1>
+  <%# app/views/items/_form_fields.html.erb %>
+  <%= render "form_fields", form: form, item: @item%>
 
-<%= render "form", item: @item %>
+    <!-- 画像アップロード（新規用） -->
+    <div id="image-upload-new" class="image-upload">
+      <input type="file" id="image_input" multiple style="display: none;">
+      <div id="file_trigger" class="fake-input">画像を追加</div>
+      <div id="preview"></div>
+      <div id="image_fields" class="hidden-input"></div>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to items", items_path %>
+    <div>
+      <%= form.submit "アイテムを追加" %>
+    </div>
 </div>
+<% end %>

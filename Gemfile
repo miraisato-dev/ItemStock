@@ -27,6 +27,10 @@ gem "jbuilder"
 
 gem "devise"
 
+# グラフ用
+gem "chartkick"
+gem "groupdate"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
@@ -53,7 +57,10 @@ group :development do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+
+  # Rails 7.2 compatibility
+  gem "minitest", "~> 5.20"
 end
