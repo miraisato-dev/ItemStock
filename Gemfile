@@ -57,7 +57,10 @@ group :development do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+
+  # Rails 7.2 compatibility
+  gem "minitest", "~> 5.20"
 end
