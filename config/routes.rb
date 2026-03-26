@@ -34,7 +34,4 @@ Rails.application.routes.draw do
   patch "update_profile", to: "users#update_profile"
 
   root "home#index"
-
 end
-
-dashboard_items_path GET /items/dashboard items#dashboard
