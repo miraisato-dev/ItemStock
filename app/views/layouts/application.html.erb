@@ -16,7 +16,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%# <%= favicon_link_tag('itemstock_favicon.png') %>
-    <%= favicon_link_tag('icon__.png') %>
+    <%= favicon_link_tag('icon.png') %>
   </head>
 
   <body>
@@ -27,7 +27,7 @@
 
         <div class="nav-left">
           <%= link_to dashboard_path, class: "logo" do %>
-            <%= image_tag "icon__.png", class: "logo-img", alt: "ItemStock" %>
+            <%= image_tag "icon.png", class: "logo-img", alt: "ItemStock" %>
             <span class="logo-text">ItemStock</span>
           <% end %>
         </div>
@@ -54,7 +54,7 @@
                 </ul>
             </div>
           <% else %>
-            <%= link_to "ログイン", new_user_session_path, class: "btn" %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-login" %>
             <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
           <% end %>
         </div>

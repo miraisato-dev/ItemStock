@@ -185,7 +185,7 @@ Component Size Tokens
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 20px;
-    --radius-full: 9999px;
+    --radius-full: 50%;
 
     /* =========================
     Shadow
@@ -310,7 +310,7 @@ HEADER app/views/layouts/application.html.erb
     background: white;
     border-bottom: 1px solid #eee;
     padding:
-        var(--space-3) var(--space-6);
+        var(--space-6) var(--space-6);
 }
 
 .nav {
@@ -441,10 +441,11 @@ HERO
 
 /* 画像 */
 .hero-image img {
-    max-width: 500px;
+    max-width: 400px;
     width: 100%;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
+    background-color: var(--color-white);
 }
 
 /* =========================
@@ -712,6 +713,10 @@ button,
 .btn-primary {
     background: var(--color-blue);
     color: white;
+}
+
+.btn-login:hover {
+    color: var(--color-blue);
 }
 
 .btn-primary:hover {
