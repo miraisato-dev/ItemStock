@@ -15,7 +15,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= favicon_link_tag('itemstock_favicon.png') %>
+    <%# <%= favicon_link_tag('itemstock_favicon.png') %>
+    <%= favicon_link_tag('icon__.png') %>
   </head>
 
   <body>
@@ -25,7 +26,10 @@
       <nav class="nav">
 
         <div class="nav-left">
-          <%= link_to "ItemStock", dashboard_path, class: "logo" %>
+          <%= link_to dashboard_path, class: "logo" do %>
+            <%= image_tag "icon__.png", class: "logo-img", alt: "ItemStock" %>
+            <span class="logo-text">ItemStock</span>
+          <% end %>
         </div>
 
         <div class="nav-right">

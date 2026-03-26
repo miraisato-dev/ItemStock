@@ -320,10 +320,24 @@ HEADER app/views/layouts/application.html.erb
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
     font-size: 22px;
     font-weight: 700;
     color: var(--color-blue);
     text-decoration: none;
+}
+
+.logo-img {
+    height: 1em;
+    /* 文字サイズと合わせる */
+    width: auto;
+}
+
+.logo-text {
+    line-height: 1;
 }
 
 /* .nav-right {
@@ -345,6 +359,180 @@ HEADER app/views/layouts/application.html.erb
 
 .user-dropdown-menu a:hover {
     color: var(--color-blue);
+}
+
+
+/* =========================
+TOP PAGE
+========================= */
+
+.top-page {
+    width: 100%;
+}
+
+/* =========================
+
+========================= */
+
+.hero,
+.cta {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+    padding: var(--space-20) 0;
+    background: linear-gradient(135deg,
+            var(--color-blue),
+            var(--color-blue-light));
+    color: white;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-10);
+}
+
+.hero-text h2 {
+    font-size: var(--font-4xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-4);
+}
+
+.hero-text p {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.hero .btn.primary {
+    background: white;
+    color: var(--color-blue);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-bold);
+}
+
+.hero .btn.primary:hover {
+    background: var(--color-gray-100);
+}
+
+.hero .btn.outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+}
+
+.hero .btn.outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 画像 */
+.hero-image img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+/* =========================
+FEATURES
+========================= */
+
+.features {
+    padding: var(--space-20) 0;
+    background: var(--color-bg-sub);
+    text-align: center;
+}
+
+.features h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--space-10);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+}
+
+.feature-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+}
+
+.feature-card h4 {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-3);
+}
+
+.feature-card p {
+    color: var(--color-text-sub);
+    font-size: var(--font-sm);
+}
+
+/* =========================
+CTA
+========================= */
+
+.cta {
+    padding: var(--space-20) 0;
+    text-align: center;
+    background: var(--color-blue-navy);
+    color: white;
+}
+
+.cta h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--space-6);
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.cta .btn.primary {
+    background: white;
+    color: var(--color-blue-navy);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-bold);
+}
+
+.cta .btn.outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+}
+
+.cta .btn.primary:hover {
+    background: var(--color-gray-100);
+}
+
+.cta .btn.outline:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* ==================================================
