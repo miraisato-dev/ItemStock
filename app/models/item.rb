@@ -4,8 +4,8 @@ class Item < ApplicationRecord
 
   has_many_attached :images
 
-  enum status: [:draft, :listed, :sold, :keep]
-  enum category: [:cd, :clothes, :electronics, :book, :game, :gadget]
+  enum status: [ :draft, :listed, :sold, :keep ]
+  enum category: [ :cd, :clothes, :electronics, :book, :game, :gadget ]
 
   validates :name, presence: true
   validates :status, presence: true
@@ -43,7 +43,7 @@ class Item < ApplicationRecord
 
   def self.enum_select_options(name)
     public_send(name.to_s.pluralize).keys.map do |k|
-      [I18n.t("enums.item.#{name}.#{k}"), k]
+      [ I18n.t("enums.item.#{name}.#{k}"), k ]
     end
   end
 end
