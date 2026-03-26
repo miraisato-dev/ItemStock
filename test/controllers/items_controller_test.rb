@@ -48,12 +48,11 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     patch item_url(@item), params: {
       item: {
         name: "Updated Name",
-        status: "draft",
-        category: "cd",
-        price: @item.price,
-        description: "test"  # ← 追加
+        status: :draft,
+        category: :cd,
+        price: @item.price   # ← 追加
       }
-    }    
+    }
     assert_redirected_to item_path(@item)
     @item.reload
     assert_equal "Updated Name", @item.name

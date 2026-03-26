@@ -64,8 +64,19 @@ class ItemsController < ApplicationController
 
   def edit; end
 
+  # def create
+  #   @item = current_user.items.build(item_params)
+  #   if @item.save
+  #     redirect_to @item, notice: "アイテムは正常に作成されました"
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
+
   def create
     @item = current_user.items.build(item_params)
+    @item.user = current_user   # ← 追加（安全策）
+
     if @item.save
       redirect_to @item, notice: "アイテムは正常に作成されました"
     else
