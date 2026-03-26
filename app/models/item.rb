@@ -4,13 +4,15 @@ class Item < ApplicationRecord
 
   has_many_attached :images
 
-  enum status: [ :draft, :listed, :sold, :keep ]
-  enum category: [ :cd, :clothes, :electronics, :book, :game, :gadget ]
+  enum status: [:draft, :listed, :sold, :keep]
+  enum category: [:cd, :clothes, :electronics, :book, :game, :gadget]
 
   validates :name, presence: true
   validates :status, presence: true
   validates :category, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :price,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0 }
   validates :images, length: { maximum: 10 }
 
   def available_statuses
@@ -43,7 +45,7 @@ class Item < ApplicationRecord
 
   def self.enum_select_options(name)
     public_send(name.to_s.pluralize).keys.map do |k|
-      [ I18n.t("enums.item.#{name}.#{k}"), k ]
+      [I18n.t("enums.item.#{name}.#{k}"), k]
     end
   end
 end

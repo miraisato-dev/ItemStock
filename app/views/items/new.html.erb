@@ -3,6 +3,16 @@
   <h2>アイテム登録</h2>
   <%= form_with(model: @item, local: true, multipart: true) do |form| %>
 
+  <% if @item.errors.any? %>
+    <div class="error-messages">
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%# app/views/items/_form_fields.html.erb %>
   <%= render "form_fields", form: form, item: @item%>
 
@@ -17,5 +27,6 @@
     <div>
       <%= form.submit "アイテムを追加" %>
     </div>
+
+  <% end %>
 </div>
-<% end %>

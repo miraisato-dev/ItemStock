@@ -58,14 +58,23 @@ class UsersController < ApplicationController
     # 新規追加：アカウント情報編集
 
     def update_account
-        @user = current_user
+    @user = current_user
 
-        if @user.update_with_password(account_params)
-            bypass_sign_in(@user)
-            redirect_to account_path, notice: "アカウント更新しました"
+    if params[:user][:password].present?
+        # パスワード変更あり
+        if @user.update_with_password(user_params)
+        redirect_to account_path, notice: "更新しました"
         else
-            render :account
+        render :edit_account
         end
+    else
+        # パスワード変更なし
+        if @user.update_without_password(user_params)
+        redirect_to account_path, notice: "更新しました"
+        else
+        render :edit_account
+        end
+    end
     end
 
     def edit_account
@@ -81,12 +90,10 @@ class UsersController < ApplicationController
     # Strong Parameters
     def user_params
         params.require(:user).permit(
-        :name,
-        :email,
-        :password,
-        :password_confirmation,
-        :bio,    # 自己紹介
-        :avatar  # プロフィール画像
+            :email,
+            :password,
+            :password_confirmation,
+            :current_password
         )
     end
 

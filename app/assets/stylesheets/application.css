@@ -1463,7 +1463,8 @@ Image Preview (画像プレビュー) app/views/items/_form.html.erb
 }
 
 /* エラーメッセージ（alert） */
-.flash-message.alert {
+.flash-message.alert,
+.error-messages {
     background-color: var(--color-error);
     /* 薄い赤*/
     color: var(--color-text-invert);

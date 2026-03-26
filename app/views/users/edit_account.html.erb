@@ -8,7 +8,21 @@
         <h2 class="settings-section__title">アカウント</h2>
     </div>
 
-    <%= form_with model: @user, url: account_path, method: :patch, local: true do |f| %>
+    <%= form_with model: @user,
+              url: account_path,
+              method: :patch,
+              local: true,
+              data: { turbo: false } do |f| %>
+
+        <% if @user.errors.any? %>
+            <div class="error-messages">
+                <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
 
         <div class="settings-list">
 
