@@ -11,7 +11,7 @@
 
         <div class="hero-actions">
         <% if current_user %>
-            <%= link_to "ダッシュボードへ", dashboard_path, class: "btn primary" %>
+            <%= link_to "ダッシュボードへ", dashboard_items_path, class: "btn primary" %>
         <% else %>
             <%= link_to "無料で始める", new_user_registration_path, class: "btn primary" %>
             <%= link_to "ログイン", new_user_session_path, class: "btn outline" %>

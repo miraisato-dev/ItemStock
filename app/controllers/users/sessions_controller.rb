@@ -10,7 +10,7 @@ module Users
       end
 
       sign_in user
-      redirect_to dashboard_path, notice: "ゲストログインしました"
+      redirect_to dashboard_items_path, notice: "ゲストログインしました"
     end
   end
 end

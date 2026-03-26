@@ -25,9 +25,9 @@
         <span class="settings-list__label">アイコン画像</span>
         <div class="settings-list__value">
             <% if current_user.avatar.attached? %>
-                <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100]) %>
-                <% else %>
-                <%= image_tag "default_user.png" %>
+                <%= image_tag current_user.avatar, class: "user-avatar" %>
+            <% else %>
+                <%= image_tag "default_user.png", class: "user-avatar" %>
             <% end %>
         </div>
         </div>

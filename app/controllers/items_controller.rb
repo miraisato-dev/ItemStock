@@ -5,26 +5,12 @@ class ItemsController < ApplicationController
   # before_action :set_item, only: %i[ show edit update destroy ]
 
   # ===== ダッシュボード =====
-  # def dashboard
-  #   @total_items     = current_user.items.count
-  #   @selling_items   = current_user.items.listed.count
-  #   @sold_items      = current_user.items.sold.count
-  #   @candidate_items = current_user.items.draft.count
-  #   @total_sales     = current_user.items.sold.sum(:price)
-  # end
-
-  # def dashboard
-  #   items = current_user.items
-
-  #   @total_items     = items.count
-  #   @selling_items   = items.respond_to?(:listed) ? items.listed.count : 0
-  #   @sold_items      = items.respond_to?(:sold) ? items.sold.count : 0
-  #   @candidate_items = items.respond_to?(:draft) ? items.draft.count : 0
-  #   @total_sales     = items.respond_to?(:sold) ? items.sold.sum(:price) : 0
-  # end
-
   def dashboard
-    @total_items = @selling_items = @sold_items = @candidate_items = @total_sales = 0
+    @total_items     = current_user.items.count
+    @selling_items   = current_user.items.listed.count
+    @sold_items      = current_user.items.sold.count
+    @candidate_items = current_user.items.draft.count
+    @total_sales     = current_user.items.sold.sum(:price)
   end
 
   # ===== 一覧 =====
@@ -64,18 +50,9 @@ class ItemsController < ApplicationController
 
   def edit; end
 
-  # def create
-  #   @item = current_user.items.build(item_params)
-  #   if @item.save
-  #     redirect_to @item, notice: "アイテムは正常に作成されました"
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
-
   def create
     @item = current_user.items.build(item_params)
-    @item.user = current_user   # ← 追加（安全策）
+    @item.user = current_user
 
     if @item.save
       redirect_to @item, notice: "アイテムは正常に作成されました"
