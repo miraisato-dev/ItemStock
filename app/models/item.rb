@@ -59,7 +59,7 @@ class Item < ApplicationRecord
 
   def self.enum_select_options(name)
     public_send(name.to_s.pluralize).keys.map do |k|
-      [I18n.t("enums.item.#{name}.#{k}"), k]
+      [ I18n.t("enums.item.#{name}.#{k}"), k ]
     end
   end
 end

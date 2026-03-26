@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "home/index"
 
   devise_for :users, controllers: {
-                       sessions: "users/sessions",
+                       sessions: "users/sessions"
                      }
 
   devise_scope :user do
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [ :new, :create, :edit, :update ]
 
   get "profile", to: "users#profile"
   patch "profile", to: "users#update_profile"

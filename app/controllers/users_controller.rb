@@ -55,7 +55,7 @@ class UsersController < ApplicationController
         @user = current_user
     end
 
-# 新規追加：アカウント情報編集
+    # 新規追加：アカウント情報編集
 
     def update_account
         @user = current_user
