@@ -1,3 +1,4 @@
+# test/controllers/items_controller_test.rb
 require "test_helper"
 
 class ItemsControllerTest < ActionDispatch::IntegrationTest
@@ -18,11 +19,19 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create item" do
-    assert_difference("Item.count") do
-      post items_url, params: { item: { description: @item.description, memo: @item.memo, name: @item.name, price: @item.price, status: @item.status, user_id: @item.user_id } }
+    assert_difference("Item.count", 1) do
+      post items_url, params: {
+        item: {
+          name: "Test Item",
+          price: 100,
+          status: "draft",
+          category: "cd",
+          description: "test"   # ← 追加
+        }
+      }
+      puts Item.last.errors.full_messages
     end
-
-    assert_redirected_to item_url(Item.last)
+    assert_redirected_to item_path(Item.last)
   end
 
   test "should show item" do
@@ -36,15 +45,29 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update item" do
-    patch item_url(@item), params: { item: { description: @item.description, memo: @item.memo, name: @item.name, price: @item.price, status: @item.status, user_id: @item.user_id } }
-    assert_redirected_to item_url(@item)
+    patch item_url(@item), params: {
+      item: {
+        name: "Updated Name",
+        status: "draft",
+        category: "cd",
+        price: @item.price,
+        description: "test"  # ← 追加
+      }
+    }    
+    assert_redirected_to item_path(@item)
+    @item.reload
+    assert_equal "Updated Name", @item.name
   end
 
   test "should destroy item" do
     assert_difference("Item.count", -1) do
       delete item_url(@item)
     end
-
     assert_redirected_to items_url
+  end
+
+  test "should get dashboard" do
+    get dashboard_items_path
+    assert_response :success
   end
 end

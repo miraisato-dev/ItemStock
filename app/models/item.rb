@@ -4,21 +4,8 @@ class Item < ApplicationRecord
 
   has_many_attached :images
 
-  enum status: {
-    draft: 0,        # 未整理
-    listed: 1,       # 出品中
-    sold: 2,         # 売却済み
-    keep: 3          # 手放さない
-  }
-
-  enum category: {
-    cd: 0,
-    clothes: 1,
-    electronics: 2,
-    book: 3,
-    game: 4,
-    gadget: 5
-  }
+  enum status: [:draft, :listed, :sold, :keep]
+  enum category: [:cd, :clothes, :electronics, :book, :game, :gadget]
 
   validates :name, presence: true
   validates :status, presence: true
@@ -30,13 +17,10 @@ class Item < ApplicationRecord
     case status.to_sym
     when :draft
       %i[draft listed]
-
     when :listed
       %i[listed sold]
-
     when :sold
       %i[sold]
-
     else
       %i[draft]
     end
@@ -59,7 +43,7 @@ class Item < ApplicationRecord
 
   def self.enum_select_options(name)
     public_send(name.to_s.pluralize).keys.map do |k|
-      [ I18n.t("enums.item.#{name}.#{k}"), k ]
+      [I18n.t("enums.item.#{name}.#{k}"), k]
     end
   end
 end
