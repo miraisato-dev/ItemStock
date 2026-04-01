@@ -3,7 +3,7 @@
 
 <div class="settings-section">
     <div class="settings-section__header">
-        <h2 class="settings-section__title">プロフィール</h2>
+        <h2 class="settings-section__title">プロフィール情報変更</h2>
     </div>
 
     <%= form_with model: @user, url: profile_path, local: true do |f| %>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="settings-section__actions actions-right">
-        <a href="<%= account_path %>" class="btn-cancel">キャンセル</a>
+        <a href="<%= profile_path %>" class="btn-cancel">キャンセル</a>
         <%= f.submit "保存", class: "save-btn--primary" %>
         </div>
 

@@ -61,19 +61,42 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update
-    Rails.logger.debug "IMAGES PARAM: #{params[:item][:images].inspect}"
+  # def update
+  #   Rails.logger.debug "IMAGES PARAM: #{params[:item][:images].inspect}"
 
+  #   @item = current_user.items.find(params[:id])
+
+  #   # 削除指定の既存画像を消す
+  #   if params[:remove_image_ids].present?
+  #     params[:remove_image_ids].each do |id|
+  #       @item.images.find(id).purge
+  #     end
+  #   end
+
+  #   # 既存画像を残したまま、新規追加画像を attach
+  #   if @item.update(item_params.except(:images))
+  #     if params[:item][:images].present?
+  #       params[:item][:images].each do |img|
+  #         @item.images.attach(img)
+  #       end
+  #     end
+
+  #     redirect_to @item, notice: "更新しました"
+  #   else
+  #     render :edit
+  #   end
+  # end
+
+  def update
     @item = current_user.items.find(params[:id])
 
-    # 削除指定の既存画像を消す
+    # 削除処理
     if params[:remove_image_ids].present?
       params[:remove_image_ids].each do |id|
         @item.images.find(id).purge
       end
     end
 
-    # 既存画像を残したまま、新規追加画像を attach
     if @item.update(item_params.except(:images))
       if params[:item][:images].present?
         params[:item][:images].each do |img|

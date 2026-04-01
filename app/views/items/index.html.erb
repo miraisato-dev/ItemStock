@@ -44,7 +44,7 @@
 
     <tbody>
       <% @items.each do |item| %>
-        <tr>
+        <tr data-href="<%= item_path(item) %>" class="clickable-row">
           <td class="item-image">
             <% if item.images.attached? %>
               <%= image_tag item.images.first, width: 60 %>
