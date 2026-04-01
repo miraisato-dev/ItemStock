@@ -19,7 +19,7 @@
 
     <div id="image-upload-edit" class="image-upload">
       <%# <input type="file" id="image_input" multiple style="display: none;"> %>
-      <%= form.file_field :images, multiple: true %>
+      <%= form.file_field :images, multiple: true, id: "image_input", style: "display: none;" %>
       <div id="file_trigger" class="fake-input">画像を追加</div>
 
       <!-- 既存画像 -->

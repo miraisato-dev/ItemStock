@@ -5,12 +5,12 @@
 
     <div class="item-thumbnails">
       <% item.images.each do |image| %>
-        <%= image_tag image %>
+        <%= image_tag image, class: "thumbnail" %>
       <% end %>
     </div>
 
     <div class="item-main-image">
-      <%= image_tag item.images.first if item.images.attached? %>
+      <%= image_tag item.images.first, id: "main-image" if item.images.attached? %>
     </div>
 
     <div class="item-info">

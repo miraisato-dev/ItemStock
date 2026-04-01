@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     #
     def update_profile
         if @user.update(profile_params)
-        redirect_to edit_profile_path, notice: "プロフィールを更新しました"
+        redirect_to profile_path, notice: "プロフィールを更新しました"
         else
         render :edit_profile, status: :unprocessable_entity
         end
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
             :email,
             :password,
             :password_confirmation,
-            :current_password
+            # :current_password
         )
     end
 

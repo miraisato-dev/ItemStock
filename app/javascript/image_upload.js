@@ -97,6 +97,12 @@ document.addEventListener("turbo:load", () => {
     })
 })
 
-
-
+// テーブル行全体をクリック可能にする app/views/items/index.html.erb で tr に data-href 属性を追加し、クリックイベントで遷移させる
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".clickable-row").forEach(row => {
+        row.addEventListener("click", () => {
+            window.location = row.dataset.href;
+        });
+    });
+});
 

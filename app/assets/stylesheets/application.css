@@ -807,6 +807,10 @@ SEARCH BOX　app/views/items/index.html.erb
     font-weight: 600;
 }
 
+.clickable-row {
+    cursor: pointer;
+}
+
 /* =================================
     Item Detail app/views/items/_item.html.erb
 ================================= */
