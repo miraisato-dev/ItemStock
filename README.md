@@ -65,7 +65,7 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 
 
 ## 🧱 ER図
-![ER図](images/er_diagram.png)
+![ER図](images/er_ItemStock.png)
 
 
 ## 🚀 セットアップ方法
