@@ -93,7 +93,7 @@ class UsersController < ApplicationController
             :email,
             :password,
             :password_confirmation,
-            # :current_password
+          # :current_password
         )
     end
 
