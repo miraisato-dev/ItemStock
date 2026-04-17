@@ -5,8 +5,8 @@ import "controllers"
 import "chartkick"
 import "chart.js"
 
-import "controllers/item"
-import "controllers/image_upload"
+import "item"
+import "image_upload"
 
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
