@@ -1,6 +1,4 @@
 // app/javascript/image_upload.js
-
-
 import Sortable from "sortablejs"
 
 document.addEventListener("turbo:load", () => {
