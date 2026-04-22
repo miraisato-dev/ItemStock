@@ -123,15 +123,15 @@ http://localhost:3000
 ## 📸 スクリーンショット
 
 * トップページ
-* ![top](images/top.png)
+![top](images/top.png)
 * ダッシュボード
-* ![dashboard](images/dashboard.png)
+![dashboard](images/dashboard.png)
 * アイテム一覧
-* ![dashboard](images/dashboard.png)
+![dashboard](images/dashboard.png)
 * アイテム詳細
-* ![detail](images/detail.png)
+![detail](images/detail.png)
 * ログイン画面
-* ![login](images/login.png)
+![login](images/login.png)
 
 
 ## 👨‍💻 作者
