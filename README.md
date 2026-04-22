@@ -120,13 +120,16 @@ http://localhost:3000
 
 ## 📸 スクリーンショット
 
-（ここに画面キャプチャを追加）
-
 * トップページ
-* 
+* ![top](images/top.png)
 * ダッシュボード
 * ![dashboard](images/dashboard.png)
+* アイテム一覧
+* ![dashboard](images/dashboard.png)
 * アイテム詳細
+* ![detail](images/detail.png)
+* ログイン画面
+* ![login](images/login.png)
 
 
 ## 👨‍💻 作者
