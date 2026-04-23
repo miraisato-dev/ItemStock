@@ -31,7 +31,8 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 ### 📦 アイテム管理
 
 * アイテムCRUD機能
-* 画像アップロード（ActiveStorage）
+* 画像アップロードにはRails ActiveStorageを使用し、
+本番環境ではAmazon S3に保存する構成を採用
 * メモ・詳細情報保存
 * ステータス管理
 
@@ -46,6 +47,8 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 * ステータス別件数表示
 * 売却状況の可視化
   
+### ☁️ インフラ構成
+本番環境はRender + AWS S3 + PostgreSQLで構成しています。
 
 ### 🎨 UI / UX
 
@@ -62,6 +65,7 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 | Database        | PostgreSQL(本番環境)|
 |                 | / SQLite3(開発環境) |
 | Image Upload    | ActiveStorage      |
+|                 | Amazon S3          |
 | Frontend        | HTML / CSS         |
 | Environment     | Docker             |
 | Version Control | Git / GitHub       |
@@ -118,7 +122,9 @@ http://localhost:3000
 * 通知機能追加
 * AIによる価格提案機能
 * 売上データのグラフ可視化
-
+* 全体的なデザインの向上
+* 画像の順番を入れ替えられるようにする
+* 登録時の速度が遅い
 
 ## 📸 スクリーンショット
 
@@ -127,7 +133,7 @@ http://localhost:3000
 * ダッシュボード
 ![dashboard](images/dashboard.png)
 * アイテム一覧
-![dashboard](images/dashboard.png)
+![dashboard](images/list .png)
 * アイテム詳細
 ![detail](images/detail.png)
 * ログイン画面
