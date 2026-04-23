@@ -63,9 +63,9 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 | Backend         | Ruby on Rails 7    |
 | Authentication  | Devise             |
 | Database        | PostgreSQL(本番環境)|
-|                   / SQLite3(開発環境) |
+|                 | / SQLite3(開発環境) |
 | Image Upload    | ActiveStorage      |
-|                   Amazon S3(本番環境) |         
+|                 | Amazon S3(本番環境) |         
 | Frontend        | HTML / CSS         |
 | Environment     | Docker             |
 | Version Control | Git / GitHub       |
