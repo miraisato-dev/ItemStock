@@ -3,6 +3,8 @@
 フリマ出品を想定した**アイテム在庫・販売管理アプリ**です。
 出品前・出品中・売却済みのステータスを一元管理し、売上や所有アイテムをシンプルに把握できます。
 
+🔗 Live Demo  
+https://itemstock.onrender.com/
 
 ## 🌐 アプリ概要
 
@@ -29,7 +31,8 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 ### 📦 アイテム管理
 
 * アイテムCRUD機能
-* 画像アップロード（ActiveStorage）
+* 画像アップロードにはRails ActiveStorageを使用し、
+本番環境ではAmazon S3に保存する構成を採用
 * メモ・詳細情報保存
 * ステータス管理
 
@@ -44,6 +47,8 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 * ステータス別件数表示
 * 売却状況の可視化
   
+### ☁️ インフラ構成
+本番環境はRender + AWS S3 + PostgreSQLで構成しています。
 
 ### 🎨 UI / UX
 
@@ -53,15 +58,17 @@ ItemStock は、個人でフリマアプリを利用する際に発生する
 
 ## 🛠 技術スタック
 
-| Category        | Technology      |
-| --------------- | --------------- |
-| Backend         | Ruby on Rails 7 |
-| Authentication  | Devise          |
-| Database        | SQLite3         |
-| Image Upload    | ActiveStorage   |
-| Frontend        | HTML / CSS      |
-| Environment     | Docker          |
-| Version Control | Git / GitHub    |
+| Category        | Technology         |
+| --------------- | ------------------ |
+| Backend         | Ruby on Rails 7    |
+| Authentication  | Devise             |
+| Database        | PostgreSQL(本番環境)|
+|                 | / SQLite3(開発環境) |
+| Image Upload    | ActiveStorage      |
+|                 | Amazon S3(本番環境) |         
+| Frontend        | HTML / CSS         |
+| Environment     | Docker             |
+| Version Control | Git / GitHub       |
 
 
 ## 🧱 ER図
@@ -83,6 +90,8 @@ rails s
 ```
 http://localhost:3000
 ```
+
+
 
 ## 👤 ゲストログイン
 
@@ -113,15 +122,22 @@ http://localhost:3000
 * 通知機能追加
 * AIによる価格提案機能
 * 売上データのグラフ可視化
-
+* 全体的なデザインの向上
+* 画像の順番を入れ替えられるようにする
+* 登録時の速度が遅い
 
 ## 📸 スクリーンショット
 
-（ここに画面キャプチャを追加）
-
 * トップページ
+![top](images/top.png)
 * ダッシュボード
+![dashboard](images/dashboard.png)
+* アイテム一覧
+![dashboard](images/list.png)
 * アイテム詳細
+![detail](images/detail.png)
+* ログイン画面
+![login](images/login.png)
 
 
 ## 👨‍💻 作者
