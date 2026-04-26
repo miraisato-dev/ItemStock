@@ -74,5 +74,5 @@ group :test do
   gem "selenium-webdriver"
 
   # Rails 7.2 compatibility
-  gem "minitest", "~> 5.20"
+  gem "minitest", "~> 6.0"
 end
