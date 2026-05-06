@@ -33,14 +33,6 @@
 
     <% end %> <!-- ← formここでちゃんと閉じる -->
 
-    <!-- 👇 formの外に出す -->
-    <div class="form-actions">
-      <%= button_to "ゲストログイン",
-          users_guest_sign_in_path,
-          method: :post,
-          class: "form-btn form-btn--secondary" %>
-    </div>
-
     <div class="form-links">
       <% if devise_mapping.recoverable? && controller_name != "passwords" %>
         <%= link_to "パスワードを忘れた方はこちら",

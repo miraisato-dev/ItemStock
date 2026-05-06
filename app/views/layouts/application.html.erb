@@ -54,6 +54,10 @@
                 </ul>
             </div>
           <% else %>
+            <%= link_to "ゲストログイン",
+              users_guest_sign_in_path,
+              data: { turbo_method: :post },
+              class: "btn btn-login" %>
             <%= link_to "ログイン", new_user_session_path, class: "btn btn-login" %>
             <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
           <% end %>
