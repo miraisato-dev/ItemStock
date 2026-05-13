@@ -3,12 +3,14 @@
 <div class="item-detail">
   <div class="item-detail-container">
 
+  <%# サムネイル画像 %>
     <div class="item-thumbnails">
       <% item.images.each do |image| %>
         <%= image_tag image, class: "thumbnail" %>
       <% end %>
     </div>
 
+<%# 小さい画像一覧 %>
     <div class="item-main-image">
       <%= image_tag item.images.first, id: "main-image" if item.images.attached? %>
     </div>
