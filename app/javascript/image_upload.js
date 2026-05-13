@@ -7,6 +7,12 @@ document.addEventListener("turbo:load", () => {
     const preview = document.getElementById("preview")
     const imageFields = document.getElementById("image_fields")
     const existingContainer = document.getElementById("existing-images")
+    if (existingContainer) {
+        Sortable.create(existingContainer, {
+            group: "shared",
+            animation: 150
+        })
+    }
     const MAX_FILES = 10
     if (!input) return
 
@@ -14,7 +20,10 @@ document.addEventListener("turbo:load", () => {
     trigger.addEventListener("click", () => input.click())
 
     // Sortable（新規画像だけ）
-    Sortable.create(preview, { animation: 150 })
+    Sortable.create(preview, {
+        group: "shared",
+        animation: 150
+    })
 
     // 既存画像削除
     document.addEventListener("click", e => {

@@ -4,7 +4,7 @@
   <div class="item-detail-container">
 
   <%# サムネイル画像 %>
-    <div class="item-thumbnails">
+    <div id="thumbnail-container" class="item-thumbnails">
       <% item.images.each do |image| %>
         <%= image_tag image, class: "thumbnail" %>
       <% end %>
