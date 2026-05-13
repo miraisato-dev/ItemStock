@@ -105,11 +105,11 @@ class ItemsController < ApplicationController
       # 新規画像は最後に追加
       if params[:item][:images].present?
         params[:item][:images].each do |img|
-          # @item.images.attach(img)
-          @item.item_images.create!(
-            image: img,
-            position: index
-          )
+          @item.images.attach(img)
+          # @item.item_images.create!(
+          #   image: img,
+          #   position: index
+          # )
         end
       end
 
