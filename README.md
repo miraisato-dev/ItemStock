@@ -142,9 +142,13 @@ http://localhost:3000
 ## Updates
 
 ### 2026/05/13
-- 商品画像のサムネイル切り替え処理を jQuery から Vanilla JavaScript に変更
+①商品画像のサムネイル切り替え処理を jQuery から Vanilla JavaScript に変更
 - 画像クリック時のメイン画像反映ラグを改善
 - Turbo 環境下でのイベント処理を安定化
+② 商品登録画面・編集画面での画像並び替えUI改善
+- 既存画像同士の並び替えのみ可能だった問題を改善
+- 新規追加画像と既存画像を相互にドラッグ＆ドロップできるよう修正
+- app/javascript/image_upload.js に existingContainer を追加し、SortableJS の group 設定を行うことで複数コンテナ間の移動に対応
 
 
 ## 👨‍💻 作者
