@@ -139,6 +139,13 @@ http://localhost:3000
 * ログイン画面
 ![login](images/login.png)
 
+## Updates
+
+### 2026/05/13
+- 商品画像のサムネイル切り替え処理を jQuery から Vanilla JavaScript に変更
+- 画像クリック時のメイン画像反映ラグを改善
+- Turbo 環境下でのイベント処理を安定化
+
 
 ## 👨‍💻 作者
 
