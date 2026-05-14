@@ -75,10 +75,6 @@ class ItemsController < ApplicationController
     if @item.update(item_params.except(:images, :existing_image_ids))
 
       # 並び替え（既存画像）
-      # if params[:item][:existing_image_ids].present?
-      #   ordered_attachments = params[:item][:existing_image_ids].map do |id|
-      #     ActiveStorage::Attachment.find(id)
-      #   end
       if params[:item][:existing_image_ids].present?
         ordered_ids = params[:item][:existing_image_ids]
 
@@ -88,7 +84,6 @@ class ItemsController < ApplicationController
 
         # 一回リセット
         @item.images.detach
-        # @item.images.attachments.each(&:purge)
 
         # 順番通りに付け直す
         ordered_attachments.each do |attachment|
@@ -96,20 +91,10 @@ class ItemsController < ApplicationController
         end
       end
 
-        # 並び順で再attach
-      #   ordered_attachments.each do |attachment|
-      #     @item.images.attach(attachment.blob)
-      #   end
-      # end
-
       # 新規画像は最後に追加
       if params[:item][:images].present?
         params[:item][:images].each do |img|
           @item.images.attach(img)
-          # @item.item_images.create!(
-          #   image: img,
-          #   position: index
-          # )
         end
       end
 
